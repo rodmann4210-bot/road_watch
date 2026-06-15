@@ -35,10 +35,9 @@
   .p-head .ic{font-size:16px}
   .p-head h2{font-family:'Oswald';font-weight:600;letter-spacing:1.5px;text-transform:uppercase;font-size:16px;flex:1}
   .p-head .ct{font-family:'Barlow Condensed';letter-spacing:1px;color:var(--muted-2);font-size:12px;text-transform:uppercase}
-  .p-head .more{font-family:'Barlow Condensed';letter-spacing:.5px;color:var(--gold-dim);font-size:12px;text-transform:uppercase}
-  .p-head .more:hover{color:var(--gold)}
   .p-body{padding:10px 16px 14px}
 
+  /* agenda */
   .agenda .item{display:flex;align-items:center;gap:13px;padding:11px 0;border-bottom:1px solid var(--line-soft)}
   .agenda .item:last-child{border:none}
   .agenda .cd{text-align:center;min-width:62px}
@@ -54,55 +53,85 @@
   .agenda .ax button:hover{color:var(--gold);border-color:var(--line)}
   .agenda .empty{font-family:'Barlow Condensed';letter-spacing:.4px;color:var(--muted-2);font-size:13.5px;padding:4px 0}
 
-  .fields{display:grid;grid-template-columns:1fr 1fr auto;gap:10px}
-  @media(max-width:680px){.fields{grid-template-columns:1fr}}
-  .field{position:relative}
+  /* planner */
+  .pl-card{padding:16px}
+  .field{position:relative;margin-bottom:10px}
   .field label{font-family:'Barlow Condensed';letter-spacing:1.5px;text-transform:uppercase;color:var(--muted-2);font-size:11px;display:block;margin-bottom:5px}
-  .field input{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:12px 13px;font-family:'Barlow';font-size:15px}
-  .field input:focus{outline:none;border-color:var(--primary-bright)}
+  .field input.place{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:12px 13px;font-family:'Barlow';font-size:15px}
+  .field input.place:focus{outline:none;border-color:var(--primary-bright)}
   .field .geo{position:absolute;right:8px;top:30px;background:none;border:none;color:var(--gold);cursor:pointer;font-size:15px;padding:4px}
-  .planbtn{align-self:flex-end;font-family:'Oswald';font-weight:700;letter-spacing:1.5px;text-transform:uppercase;font-size:14px;background:linear-gradient(160deg,var(--primary),var(--primary-deep));color:#fff;border:none;border-radius:9px;padding:13px 24px;cursor:pointer;transition:transform .15s;white-space:nowrap}
-  .planbtn:hover{transform:translateY(-1px)} .planbtn:disabled{opacity:.6;cursor:wait}
-  .modes{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+  #stops .stoprow{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+  #stops .stoprow input{flex:1;background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:11px 13px;font-family:'Barlow';font-size:15px}
+  #stops .stoprow .ov{display:flex;align-items:center;gap:5px;font-family:'Barlow Condensed';letter-spacing:.5px;text-transform:uppercase;color:var(--muted-2);font-size:11px;cursor:pointer;white-space:nowrap}
+  #stops .stoprow .ov input{width:16px;height:16px;accent-color:var(--primary-bright)}
+  #stops .stoprow .rm{background:none;border:1px solid var(--line-soft);color:var(--muted-2);border-radius:7px;padding:9px 11px;cursor:pointer}
+  #stops .stoprow .rm:hover{color:var(--red);border-color:var(--red)}
+  .stopslabel{font-family:'Barlow Condensed';letter-spacing:1.5px;text-transform:uppercase;color:var(--muted-2);font-size:11px;margin:2px 0 6px}
+  .addstop{font-family:'Barlow Condensed';letter-spacing:1px;text-transform:uppercase;font-size:12px;background:var(--panel-2);border:1px dashed var(--line);color:var(--muted);border-radius:8px;padding:9px 14px;cursor:pointer;margin-bottom:12px}
+  .addstop:hover{color:var(--gold)}
+  .modes{display:flex;gap:7px;flex-wrap:wrap;margin:4px 0 12px}
   .modes button{font-family:'Barlow Condensed';letter-spacing:1px;text-transform:uppercase;font-size:12.5px;color:var(--muted);background:var(--bg);border:1px solid var(--line-soft);border-radius:8px;padding:8px 13px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .15s}
   .modes button.on{background:linear-gradient(160deg,var(--primary),var(--primary-deep));color:#fff;border-color:transparent}
+  .opts{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+  .opts .hf{display:flex;align-items:center;gap:7px;font-family:'Barlow Condensed';letter-spacing:.5px;text-transform:uppercase;color:var(--muted-2);font-size:12px}
+  .opts .hf input{width:58px;background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:7px;padding:7px 9px;font-family:'Oswald';text-align:center;font-size:14px}
+  .opts .sug{font-family:'Barlow Condensed';letter-spacing:1px;text-transform:uppercase;font-size:12px;background:var(--panel-2);border:1px solid var(--line-soft);color:var(--muted);border-radius:8px;padding:8px 13px;cursor:pointer}
+  .opts .sug:hover{color:var(--gold);border-color:var(--line)}
+  .planbtn{width:100%;font-family:'Oswald';font-weight:700;letter-spacing:1.5px;text-transform:uppercase;font-size:15px;background:linear-gradient(160deg,var(--primary),var(--primary-deep));color:#fff;border:none;border-radius:9px;padding:14px;cursor:pointer;transition:transform .15s}
+  .planbtn:hover{transform:translateY(-1px)} .planbtn:disabled{opacity:.6;cursor:wait}
   .formnote{font-family:'Barlow Condensed';letter-spacing:.5px;color:var(--muted-2);font-size:12px;margin-top:11px}
   .formnote.err{color:var(--red)}
 
+  /* summary hero */
   .hero{background:linear-gradient(135deg,var(--primary),var(--primary-deep));border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:16px;display:none}
   .hero.show{display:block}
-  .hero .route{font-family:'Oswald';font-weight:700;font-size:clamp(19px,3.6vw,26px);letter-spacing:.5px;line-height:1.1}
-  .hero .route .arr{color:var(--gold);margin:0 8px}
+  .hero .route{font-family:'Oswald';font-weight:700;font-size:clamp(18px,3.4vw,24px);letter-spacing:.5px;line-height:1.2}
+  .hero .route .arr{color:var(--gold);margin:0 7px}
   .hstats{display:flex;gap:22px;flex-wrap:wrap;margin:14px 0 4px}
   .hstat .n{font-family:'Oswald';font-weight:700;font-size:24px;color:#fff;font-variant-numeric:tabular-nums}
   .hstat .l{font-family:'Barlow Condensed';letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.72);font-size:11px}
   .hactions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
   .hactions a{display:inline-flex;align-items:center;gap:7px;font-family:'Oswald';font-weight:600;letter-spacing:1px;text-transform:uppercase;font-size:12px;background:rgba(10,15,13,.45);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:8px;padding:9px 14px;transition:background .15s}
   .hactions a:hover{background:rgba(10,15,13,.75)}
-  .wx{display:flex;align-items:center;gap:10px;margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.16);font-family:'Barlow Condensed';letter-spacing:.5px;font-size:14px;color:rgba(255,255,255,.9)}
-  .wx .t{font-family:'Oswald';font-weight:700;font-size:18px;color:var(--gold)}
   .savebar{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.16)}
   .savebar .sf{display:flex;flex-direction:column;gap:4px}
   .savebar label{font-family:'Barlow Condensed';letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.72);font-size:10px}
   .savebar input{background:rgba(10,15,13,.5);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:7px;padding:8px 10px;font-family:'Barlow';font-size:13px}
-  .savebar .lbl{min-width:150px}
+  .savebar .lbl{min-width:140px}
   .savebar button{font-family:'Oswald';font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:12px;background:var(--gold);color:var(--bg);border:none;border-radius:7px;padding:10px 18px;cursor:pointer}
 
-  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
-  .gpanel{grid-column:span 12;background:var(--panel);border:1px solid var(--line-soft);border-radius:14px;overflow:hidden}
-  @media(min-width:780px){.col-6{grid-column:span 6}.col-12{grid-column:span 12}}
-  .p-body.scroll{max-height:330px;overflow-y:auto}
-  .p-body.scroll::-webkit-scrollbar{width:7px}.p-body.scroll::-webkit-scrollbar-thumb{background:var(--primary-bright);border-radius:6px}
-  .poi{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line-soft)}
-  .poi:last-child{border:none}
-  .poi .pn{flex:1;min-width:0}
-  .poi .pnm{font-weight:600;font-size:14.5px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .poi .pmeta{font-family:'Barlow Condensed';letter-spacing:.5px;color:var(--muted-2);font-size:12px;text-transform:uppercase}
-  .poi .pgo{color:var(--muted-2);font-size:14px;padding:4px} .poi .pgo:hover{color:var(--gold)}
-  .loading,.fallback{font-family:'Barlow Condensed';letter-spacing:.4px;color:var(--muted-2);font-size:13.5px;line-height:1.5;padding:10px 0}
-  .explore{display:flex;flex-wrap:wrap;gap:8px;padding:6px 0 2px}
-  .explore a{font-family:'Barlow Condensed';letter-spacing:.5px;text-transform:uppercase;font-size:12px;background:var(--panel-2);border:1px solid var(--line-soft);border-radius:7px;padding:8px 12px;color:var(--muted);transition:all .15s}
-  .explore a:hover{color:var(--gold);border-color:var(--line)}
+  /* itinerary */
+  .day{padding:12px 0;border-bottom:1px solid var(--line-soft)}
+  .day:last-child{border:none}
+  .day .dh{font-family:'Oswald';font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:15px;color:var(--gold);display:flex;justify-content:space-between;align-items:baseline}
+  .day .dh .dt{font-family:'Barlow Condensed';color:var(--muted-2);font-size:12px;letter-spacing:.5px}
+  .day .leg{display:flex;align-items:center;gap:9px;padding:6px 0 6px 4px;font-size:14px}
+  .day .leg .lr{flex:1}
+  .day .leg .lm{font-family:'Barlow Condensed';letter-spacing:.5px;color:var(--muted-2);font-size:12px;text-transform:uppercase;white-space:nowrap}
+  .day .sleep{font-family:'Barlow Condensed';letter-spacing:.5px;text-transform:uppercase;color:var(--green);font-size:12px;padding:3px 0 3px 4px}
+  .warn{color:var(--red);font-family:'Barlow Condensed';font-size:12.5px;letter-spacing:.4px;margin-top:6px}
+
+  /* place guides */
+  .place{background:var(--panel);border:1px solid var(--line-soft);border-radius:14px;margin-bottom:14px;overflow:hidden}
+  .place .ph{display:flex;align-items:center;gap:9px;padding:13px 16px;border-bottom:1px solid var(--line-soft);flex-wrap:wrap}
+  .place .pin{font-size:16px}
+  .place .pnm{font-family:'Oswald';font-weight:600;letter-spacing:.5px;font-size:17px;flex:1;min-width:0}
+  .place .badge{font-family:'Barlow Condensed';letter-spacing:1px;text-transform:uppercase;font-size:10px;padding:2px 8px;border-radius:5px}
+  .place .badge.ov{background:rgba(110,224,163,.16);color:var(--green)}
+  .place .badge.dest{background:rgba(242,181,61,.16);color:var(--gold)}
+  .place .pwx{font-family:'Barlow Condensed';letter-spacing:.5px;font-size:13px;color:var(--muted)}
+  .place .pwx .t{font-family:'Oswald';font-weight:700;color:var(--gold);font-size:15px}
+  .pcols{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-soft)}
+  @media(max-width:760px){.pcols{grid-template-columns:repeat(2,1fr)}}
+  .pcol{background:var(--panel);padding:12px 14px}
+  .pcol h4{font-family:'Oswald';font-weight:600;letter-spacing:1px;text-transform:uppercase;font-size:12.5px;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  .pcol h4 .mm{font-family:'Barlow Condensed';color:var(--gold-dim);font-size:11px}.pcol h4 .mm:hover{color:var(--gold)}
+  .pcol .mini{font-size:13px;padding:5px 0;border-bottom:1px solid var(--line-soft);line-height:1.25}
+  .pcol .mini:last-child{border:none}
+  .pcol .mini .mn{font-weight:600;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pcol .mini .mx{font-family:'Barlow Condensed';color:var(--muted-2);font-size:11px;text-transform:uppercase}
+  .pcol .none{font-family:'Barlow Condensed';color:var(--muted-2);font-size:12px;padding:5px 0}
+  .pcol .scan{font-family:'Barlow Condensed';color:var(--muted-2);font-size:12px;padding:5px 0}
 
   .launch{position:fixed;right:20px;bottom:20px;z-index:40;display:flex;align-items:center;gap:9px;font-family:'Oswald';font-weight:700;letter-spacing:1.5px;text-transform:uppercase;font-size:13px;border-radius:50px;padding:13px 20px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.5);transition:transform .15s;background:linear-gradient(160deg,var(--gold),var(--gold-dim));color:var(--bg);border:none}
   .launch:hover{transform:translateY(-2px)}
@@ -137,7 +166,7 @@
   <header>
     <div class="brand">
       <h1>Road <span class="y">Watch</span></h1>
-      <div class="sub">Trip Planner · Route &amp; Destination Guide</div>
+      <div class="sub">Trip Planner · Multi-Day Itinerary &amp; Stop Guides</div>
     </div>
     <div class="upd" id="updated"></div>
   </header>
@@ -147,28 +176,32 @@
     <div class="p-body" id="agenda"><div class="empty">No trips saved yet — plan one below, set a date, and tap Save.</div></div>
   </section>
 
-  <section class="panel" style="padding:16px">
-    <div class="fields">
-      <div class="field">
-        <label>Start</label>
-        <input id="start" placeholder="City, address, or place" autocomplete="off">
-        <button class="geo" id="geoBtn" title="Use my location">📍</button>
-      </div>
-      <div class="field">
-        <label>Destination</label>
-        <input id="dest" placeholder="Where are you headed?" autocomplete="off">
-      </div>
-      <button class="planbtn" id="planBtn">Plan Trip</button>
+  <section class="panel pl-card">
+    <div class="field">
+      <label>Start</label>
+      <input class="place" id="start" placeholder="City, address, or place" autocomplete="off">
+      <button class="geo" id="geoBtn" title="Use my location">📍</button>
+    </div>
+    <div class="stopslabel">Stops along the way</div>
+    <div id="stops"></div>
+    <button class="addstop" id="addStop">+ Add stop</button>
+    <div class="field">
+      <label>Destination</label>
+      <input class="place" id="dest" placeholder="Where are you headed?" autocomplete="off">
     </div>
     <div class="modes" id="modes"></div>
-    <div class="formnote" id="formnote">Pick a mode, enter start &amp; destination — route plus a full destination guide come back. Save it with a date to track upcoming trips.</div>
+    <div class="opts">
+      <span class="hf">Max drive/day <input id="maxHrs" type="number" min="1" max="24" value="8"> hrs</span>
+      <button class="sug" id="sugBtn">Suggest overnights</button>
+    </div>
+    <button class="planbtn" id="planBtn">Plan Trip</button>
+    <div class="formnote" id="formnote">Add any stops, flag the ones you'll sleep at as 🛏 overnight, and every stop gets its own guide. Save with a date to track it.</div>
   </section>
 
   <section class="hero" id="hero">
     <div class="route" id="heroRoute"></div>
     <div class="hstats" id="heroStats"></div>
     <div class="hactions" id="heroActions"></div>
-    <div class="wx" id="heroWx" style="display:none"></div>
     <div class="savebar" id="savebar">
       <div class="sf"><label>Label (optional)</label><input class="lbl" id="svLabel" placeholder="e.g. Owings visit"></div>
       <div class="sf"><label>Depart</label><input type="date" id="svDepart"></div>
@@ -177,28 +210,12 @@
     </div>
   </section>
 
-  <div class="grid" id="results" style="display:none">
-    <section class="gpanel col-12">
-      <div class="p-head"><span class="ic">🧭</span><h2>Destination</h2></div>
-      <div class="p-body"><div class="explore" id="exploreLinks"></div></div>
-    </section>
-    <section class="gpanel col-6">
-      <div class="p-head"><span class="bar"></span><span class="ic">🏨</span><h2>Hotels</h2><a class="more" id="moreHotels" target="_blank" rel="noopener">Maps ↗</a></div>
-      <div class="p-body scroll" id="hotels"><div class="loading">—</div></div>
-    </section>
-    <section class="gpanel col-6">
-      <div class="p-head"><span class="bar"></span><span class="ic">🍽️</span><h2>Restaurants</h2><a class="more" id="moreFood" target="_blank" rel="noopener">Maps ↗</a></div>
-      <div class="p-body scroll" id="food"><div class="loading">—</div></div>
-    </section>
-    <section class="gpanel col-6">
-      <div class="p-head"><span class="bar"></span><span class="ic">🎭</span><h2>Entertainment</h2><a class="more" id="moreFun" target="_blank" rel="noopener">Maps ↗</a></div>
-      <div class="p-body scroll" id="fun"><div class="loading">—</div></div>
-    </section>
-    <section class="gpanel col-6">
-      <div class="p-head"><span class="bar"></span><span class="ic">🏟️</span><h2>Sports</h2><a class="more" id="moreSports" target="_blank" rel="noopener">Tickets ↗</a></div>
-      <div class="p-body scroll" id="sports"><div class="loading">—</div></div>
-    </section>
-  </div>
+  <section class="panel" id="itinPanel" style="display:none">
+    <div class="p-head"><span class="bar"></span><span class="ic">🛣️</span><h2>Day-by-Day Itinerary</h2><span class="ct" id="itinCt"></span></div>
+    <div class="p-body" id="itinerary"></div>
+  </section>
+
+  <div id="guides"></div>
 
   <footer>© 2026 R. Grimes · All rights reserved</footer>
 </div>
@@ -240,12 +257,13 @@
 <script>
 const $=id=>document.getElementById(id);
 const enc=encodeURIComponent;
-let DEST=null, START=null, MODE="drive";
+let MODE="drive", LAST=null;
 const MODES=[["drive","🚗","Drive"],["walk","🚶","Walk"],["bike","🚲","Bike"],["transit","🚌","Transit"],["fly","✈️","Fly"]];
 const GMODE={drive:"driving",walk:"walking",bike:"bicycling",transit:"transit"};
 const modeIcon=m=>(MODES.find(x=>x[0]===m)||["","🚗"])[1];
 
 async function getJSON(u,opt){const r=await fetch(u,opt||{});if(!r.ok)throw new Error(r.status);return r.json();}
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 function miles(m){return Math.round(m/1609.34);}
 function hrs(s){const h=Math.floor(s/3600),m=Math.round((s%3600)/60);return h>0?`${h}h ${m}m`:`${m}m`;}
 function hav(a,b){const R=3958.8,dl=(b.lat-a.lat)*Math.PI/180,dn=(b.lon-a.lon)*Math.PI/180;
@@ -253,11 +271,24 @@ function hav(a,b){const R=3958.8,dl=(b.lat-a.lat)*Math.PI/180,dn=(b.lon-a.lon)*M
   return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
 function shortName(dn){return (dn||"").split(",").slice(0,2).join(",");}
 
+/* ---------- stop rows ---------- */
+function addStopRow(val,overnight){
+  const row=document.createElement("div");row.className="stoprow";
+  row.innerHTML=`<input class="sp" placeholder="Stop (city or place)" autocomplete="off" value="${(val||'').replace(/"/g,'&quot;')}">`
+    +`<label class="ov"><input type="checkbox" class="ovc" ${overnight?'checked':''}> 🛏 Overnight</label>`
+    +`<button class="rm" title="Remove">✕</button>`;
+  row.querySelector(".rm").onclick=()=>row.remove();
+  $("stops").appendChild(row);
+}
+function collectStops(){return [...$("stops").querySelectorAll(".stoprow")].map(r=>({
+  q:r.querySelector(".sp").value.trim(), overnight:r.querySelector(".ovc").checked})).filter(s=>s.q);}
+
 function renderModes(){
   $("modes").innerHTML=MODES.map(([k,i,l])=>`<button data-m="${k}" class="${k===MODE?'on':''}">${i} ${l}</button>`).join("");
-  $("modes").querySelectorAll("button").forEach(b=>b.onclick=()=>{MODE=b.dataset.m;renderModes();if(START&&DEST)plan();});
+  $("modes").querySelectorAll("button").forEach(b=>b.onclick=()=>{MODE=b.dataset.m;renderModes();});
 }
 
+/* ---------- services ---------- */
 async function geocode(q){
   const d=await getJSON(`https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${enc(q)}`,{headers:{"Accept":"application/json"}});
   if(!d.length)throw new Error("not found: "+q);
@@ -268,17 +299,17 @@ async function reverse(lat,lon){
     const a=d.address||{};return a.city||a.town||a.village||a.county||d.display_name||`${lat.toFixed(3)},${lon.toFixed(3)}`;}
   catch(e){return `${lat.toFixed(3)},${lon.toFixed(3)}`;}
 }
-async function driveRoute(a,b){
-  try{const d=await getJSON(`https://router.project-osrm.org/route/v1/driving/${a.lon},${a.lat};${b.lon},${b.lat}?overview=false`);
-    if(d.routes&&d.routes[0])return {dist:d.routes[0].distance,dur:d.routes[0].duration};}catch(e){}
+async function routeAll(pts){
+  try{const coords=pts.map(p=>`${p.lon},${p.lat}`).join(";");
+    const d=await getJSON(`https://router.project-osrm.org/route/v1/driving/${coords}?overview=false`);
+    if(d.routes&&d.routes[0])return d.routes[0].legs.map(l=>({dist:l.distance,dur:l.duration}));}catch(e){}
   return null;
 }
 const WMO={0:"Clear",1:"Mainly clear",2:"Partly cloudy",3:"Overcast",45:"Fog",48:"Fog",51:"Drizzle",53:"Drizzle",55:"Drizzle",
   61:"Rain",63:"Rain",65:"Heavy rain",71:"Snow",73:"Snow",75:"Heavy snow",80:"Showers",81:"Showers",82:"Showers",95:"Storms",96:"Storms",99:"Storms"};
 async function weather(lat,lon){
   try{const d=await getJSON(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&temperature_unit=fahrenheit&timezone=auto&forecast_days=1`);
-    const c=d.current||{};return {t:Math.round(c.temperature_2m),code:c.weather_code,
-      hi:Math.round(d.daily.temperature_2m_max[0]),lo:Math.round(d.daily.temperature_2m_min[0])};}catch(e){return null;}
+    const c=d.current||{};return {t:Math.round(c.temperature_2m),code:c.weather_code,hi:Math.round(d.daily.temperature_2m_max[0]),lo:Math.round(d.daily.temperature_2m_min[0])};}catch(e){return null;}
 }
 async function overpass(lat,lon){
   const q=`[out:json][timeout:25];(`
@@ -299,90 +330,159 @@ async function overpass(lat,lon){
     else if(t.tourism==="attraction")cat="fun";
     else if(/^(stadium|sports_centre)$/.test(t.leisure||""))cat="sports";
     if(!cat)return null;
-    const meta=t.cuisine||t.amenity||t.tourism||t.leisure||"";
-    return {name:t.name,cat,meta:meta.replace(/_/g," "),lat:la,lon:lo};
+    return {name:t.name,cat,meta:(t.cuisine||t.amenity||t.tourism||t.leisure||"").replace(/_/g," "),lat:la,lon:lo};
   }).filter(Boolean);
 }
 function mapsSearch(term,name){return `https://www.google.com/maps/search/?api=1&query=${enc(term)}+near+${enc(name)}`;}
-function mapsPoint(n,la,lo){return `https://www.google.com/maps/search/?api=1&query=${enc(n)}%20${la},${lo}`;}
-function routeLink(s,d,mode){
-  if(mode==="fly")return `https://www.google.com/travel/flights?q=${enc("Flights from "+s+" to "+d)}`;
-  return `https://www.google.com/maps/dir/?api=1&origin=${enc(s)}&destination=${enc(d)}&travelmode=${GMODE[mode]||"driving"}`;
-}
-function renderPOIs(elId,list,emptyTerm){
-  const el=$(elId);
-  if(!list.length){el.innerHTML=`<div class="fallback">No tagged spots came back here — use the link above to browse ${emptyTerm} at the destination.</div>`;return;}
-  el.innerHTML=list.slice(0,9).map(p=>`<div class="poi"><div class="pn"><div class="pnm">${p.name}</div>`
-    +`<div class="pmeta">${p.meta||""}${p.miAway!=null?` · ${p.miAway} mi`:""}</div></div>`
-    +`<a class="pgo" href="${mapsPoint(p.name,p.lat,p.lon)}" target="_blank" rel="noopener" title="Open in Maps">↗</a></div>`).join("");
+function fullRouteLink(pts){
+  const o=pts[0].q, d=pts[pts.length-1].q, mids=pts.slice(1,-1).map(p=>p.q);
+  if(MODE==="fly")return `https://www.google.com/travel/flights?q=${enc("Flights from "+o+" to "+d)}`;
+  let u=`https://www.google.com/maps/dir/?api=1&origin=${enc(o)}&destination=${enc(d)}&travelmode=${GMODE[MODE]||"driving"}`;
+  if(mids.length)u+=`&waypoints=${mids.map(enc).join("%7C")}`;
+  return u;
 }
 
+/* ---------- itinerary ---------- */
+function buildDays(pts,legs){
+  // legs[i] connects pts[i]->pts[i+1]; day ends at an overnight stop or the final dest
+  const days=[];let cur={from:0,legIdx:[]};
+  for(let i=0;i<pts.length-1;i++){
+    cur.legIdx.push(i);
+    const end=pts[i+1];
+    if((end.overnight && i+1<pts.length-1) || i+1===pts.length-1){
+      cur.to=i+1;days.push(cur);cur={from:i+1,legIdx:[]};
+    }
+  }
+  return days;
+}
+function renderItinerary(pts,legs){
+  const days=buildDays(pts,legs);
+  $("itinCt").textContent=`${days.length} day${days.length>1?"s":""}`;
+  let warn="";
+  const maxSec=(parseFloat($("maxHrs").value)||8)*3600;
+  $("itinerary").innerHTML=days.map((d,di)=>{
+    let dDist=0,dDur=0;
+    const legHtml=d.legIdx.map(li=>{const lg=legs?legs[li]:null;const a=pts[li],b=pts[li+1];
+      if(lg){dDist+=lg.dist;dDur+=lg.dur;}
+      const mt=lg?`${miles(lg.dist)} mi · ${hrs(lg.dur)}`:`${Math.round(hav(a,b))} mi`;
+      return `<div class="leg"><span>${modeIcon(MODE)}</span><span class="lr">${shortName(a.name)} <span style="color:var(--gold-dim)">→</span> ${shortName(b.name)}</span><span class="lm">${mt}</span></div>`;
+    }).join("");
+    if(legs&&dDur>maxSec)warn=`Day ${di+1} runs ${hrs(dDur)} of driving — over your ${$("maxHrs").value}h target. Add a stop or flag an earlier overnight.`;
+    const endPt=pts[d.to];const isFinal=d.to===pts.length-1;
+    const sleepLine=isFinal?`<div class="sleep">🏁 Arrive ${shortName(endPt.name)}</div>`:`<div class="sleep">🛏 Overnight · ${shortName(endPt.name)}</div>`;
+    const tot=legs?`${miles(dDist)} mi · ${hrs(dDur)}`:`${"~"}`;
+    return `<div class="day"><div class="dh">Day ${di+1}<span class="dt">${tot}</span></div>${legHtml}${sleepLine}</div>`;
+  }).join("")+(warn?`<div class="warn">⚠ ${warn}</div>`:"");
+  $("itinPanel").style.display="block";
+}
+function suggestOvernights(){
+  if(!LAST||!LAST.legs){$("formnote").classList.add("err");$("formnote").textContent="Plan the trip first, then I can suggest overnight splits.";return;}
+  const {pts,legs}=LAST;const maxSec=(parseFloat($("maxHrs").value)||8)*3600;
+  // clear current overnight flags on stop rows
+  const rows=[...$("stops").querySelectorAll(".stoprow")];
+  pts.forEach(p=>p.overnight=false);rows.forEach(r=>r.querySelector(".ovc").checked=false);
+  let acc=0;
+  for(let i=0;i<legs.length;i++){
+    acc+=legs[i].dur;
+    const nextIsStop=(i+1)>=1 && (i+1)<=rows.length; // pts[i+1] is a stop row (index i)
+    if(acc>maxSec && nextIsStop){pts[i+1].overnight=true;rows[i].querySelector(".ovc").checked=true;acc=0;}
+  }
+  renderItinerary(pts,legs);
+  $("formnote").classList.remove("err");
+  $("formnote").textContent="Overnights suggested to keep each day under "+$("maxHrs").value+"h. Adjust the 🛏 boxes as you like.";
+}
+
+/* ---------- place guides (every stop = a destination) ---------- */
+function miniList(items){
+  if(!items.length)return `<div class="none">— use Maps ↗</div>`;
+  return items.slice(0,3).map(p=>`<div class="mini"><span class="mn">${p.name}</span><span class="mx">${p.meta||""}${p.miAway!=null?` · ${p.miAway} mi`:""}</span></div>`).join("");
+}
+function placeCard(pt,i,kind){
+  const badge=kind==="dest"?`<span class="badge dest">Destination</span>`:(pt.overnight?`<span class="badge ov">🛏 Overnight</span>`:"");
+  const nm=shortName(pt.name);
+  return `<div class="place" id="place_${i}">
+    <div class="ph"><span class="pin">📍</span><span class="pnm">${nm}</span>${badge}<span class="pwx" id="wx_${i}">…</span></div>
+    <div class="pcols">
+      <div class="pcol"><h4>🏨 Hotels <a class="mm" href="${mapsSearch("hotels",nm)}" target="_blank" rel="noopener">Maps↗</a></h4><div id="h_${i}"><div class="scan">scanning…</div></div></div>
+      <div class="pcol"><h4>🍽️ Food <a class="mm" href="${mapsSearch("restaurants",nm)}" target="_blank" rel="noopener">Maps↗</a></h4><div id="f_${i}"><div class="scan">scanning…</div></div></div>
+      <div class="pcol"><h4>🎭 Fun <a class="mm" href="${mapsSearch("things to do",nm)}" target="_blank" rel="noopener">Maps↗</a></h4><div id="e_${i}"><div class="scan">scanning…</div></div></div>
+      <div class="pcol"><h4>🏟️ Sports <a class="mm" href="https://www.ticketmaster.com/search?q=${enc(nm)}" target="_blank" rel="noopener">Tix↗</a></h4><div id="s_${i}"><div class="scan">scanning…</div></div></div>
+    </div></div>`;
+}
+async function fillGuide(pt,i){
+  weather(pt.lat,pt.lon).then(w=>{const el=$("wx_"+i);if(!el)return;
+    el.innerHTML=w?`<span class="t">${w.t}°</span> ${WMO[w.code]||""} · H ${w.hi}°/L ${w.lo}°`:"";});
+  try{
+    const pois=await overpass(pt.lat,pt.lon);
+    pois.forEach(p=>p.miAway=+hav(pt,p).toFixed(1));
+    const by=c=>pois.filter(p=>p.cat===c).sort((a,b)=>a.miAway-b.miAway);
+    if($("h_"+i))$("h_"+i).innerHTML=miniList(by("hotel"));
+    if($("f_"+i))$("f_"+i).innerHTML=miniList(by("food"));
+    if($("e_"+i))$("e_"+i).innerHTML=miniList(by("fun"));
+    if($("s_"+i))$("s_"+i).innerHTML=miniList(by("sports"));
+  }catch(e){
+    ["h_","f_","e_","s_"].forEach(p=>{if($(p+i))$(p+i).innerHTML='<div class="none">— use Maps ↗</div>';});
+  }
+}
+
+/* ---------- plan ---------- */
 async function plan(){
-  const s=$("start").value.trim(), dq=$("dest").value.trim();
-  if(!s||!dq){$("formnote").textContent="Enter both a start and a destination.";$("formnote").classList.add("err");return;}
+  const startQ=$("start").value.trim(), destQ=$("dest").value.trim();
+  if(!startQ||!destQ){$("formnote").classList.add("err");$("formnote").textContent="Enter both a start and a destination.";return;}
+  const stops=collectStops();
   const btn=$("planBtn");btn.disabled=true;btn.textContent="Planning…";
   $("formnote").classList.remove("err");$("formnote").textContent="Geocoding & routing…";
-  try{localStorage.setItem("rw_trip",JSON.stringify({s,d:dq,mode:MODE}));}catch(e){}
+  try{localStorage.setItem("rw_trip",JSON.stringify({s:startQ,d:destQ,mode:MODE,stops}));}catch(e){}
   try{
-    const [A,B]=await Promise.all([geocode(s),geocode(dq)]);
-    START=A;DEST=B;
-    const destShort=shortName(B.name);
-    $("heroRoute").innerHTML=`${modeIcon(MODE)} ${shortName(A.name)}<span class="arr">→</span>${destShort}`;
-    const crow=Math.round(hav(A,B));
-    if(MODE==="drive"){
-      const rt=await driveRoute(A,B);
-      $("heroStats").innerHTML=rt
-        ? `<div class="hstat"><div class="n">${miles(rt.dist)}</div><div class="l">Miles</div></div><div class="hstat"><div class="n">${hrs(rt.dur)}</div><div class="l">Drive Time</div></div>`
-        : `<div class="hstat"><div class="n">${crow}</div><div class="l">Miles (direct)</div></div>`;
-    }else if(MODE==="fly"){
-      $("heroStats").innerHTML=`<div class="hstat"><div class="n">${crow}</div><div class="l">Air Miles</div></div>`;
+    const queries=[{q:startQ},...stops,{q:destQ}];
+    const resolved=await Promise.all(queries.map(async x=>{const g=await geocode(x.q);return {q:x.q,name:g.name,lat:g.lat,lon:g.lon,overnight:!!x.overnight};}));
+    const pts=resolved;
+    const legs=MODE==="drive"?await routeAll(pts):null;
+    LAST={pts,legs,mode:MODE};
+    // hero summary
+    let totDist=0,totDur=0;
+    if(legs)legs.forEach(l=>{totDist+=l.dist;totDur+=l.dur;});
+    const chain=pts.map(p=>shortName(p.name)).join('<span class="arr">→</span>');
+    $("heroRoute").innerHTML=`${modeIcon(MODE)} ${chain}`;
+    const days=buildDays(pts,legs).length;
+    if(legs){
+      $("heroStats").innerHTML=`<div class="hstat"><div class="n">${miles(totDist)}</div><div class="l">Total Miles</div></div>`
+        +`<div class="hstat"><div class="n">${hrs(totDur)}</div><div class="l">Drive Time</div></div>`
+        +`<div class="hstat"><div class="n">${days}</div><div class="l">Day${days>1?"s":""}</div></div>`
+        +`<div class="hstat"><div class="n">${stops.length}</div><div class="l">Stops</div></div>`;
     }else{
-      $("heroStats").innerHTML=`<div class="hstat"><div class="n">${crow}</div><div class="l">Miles (direct)</div></div><div class="hstat"><div class="n">↗</div><div class="l">Time in Maps</div></div>`;
+      let crow=0;for(let i=0;i<pts.length-1;i++)crow+=hav(pts[i],pts[i+1]);
+      $("heroStats").innerHTML=`<div class="hstat"><div class="n">${Math.round(crow)}</div><div class="l">Miles (direct)</div></div>`
+        +`<div class="hstat"><div class="n">↗</div><div class="l">Time in Maps</div></div>`
+        +`<div class="hstat"><div class="n">${stops.length}</div><div class="l">Stops</div></div>`;
     }
-    let acts=`<a href="${routeLink(s,dq,MODE)}" target="_blank" rel="noopener">${MODE==="fly"?"✈️ Search Flights":"🧭 Open Route in Maps"}</a>`;
+    let acts=`<a href="${fullRouteLink(pts)}" target="_blank" rel="noopener">${MODE==="fly"?"✈️ Search Flights":"🧭 Open Full Route in Maps"}</a>`;
     if(MODE==="drive")acts+=`<a href="https://rodmann4210-bot.github.io/detour/" target="_blank" rel="noopener">⛽ Fuel Stops (Detour)</a>`;
     $("heroActions").innerHTML=acts;
     $("hero").classList.add("show");
-    $("results").style.display="grid";
     if(!$("svDepart").value)$("svDepart").value=new Date().toISOString().slice(0,10);
-    $("formnote").textContent=`Trip to ${destShort} — building destination guide…`;
-    weather(B.lat,B.lon).then(w=>{if(w){$("heroWx").style.display="flex";
-      $("heroWx").innerHTML=`<span>Destination weather:</span> <span class="t">${w.t}°</span> <span>${WMO[w.code]||""} · H ${w.hi}° / L ${w.lo}°</span>`;}});
-    $("exploreLinks").innerHTML=[
-      ["Things to do",`https://www.google.com/search?q=${enc("things to do in "+destShort)}`],
-      ["Wikipedia",`https://en.wikipedia.org/wiki/Special:Search?search=${enc(destShort)}`],
-      ["Tripadvisor",`https://www.tripadvisor.com/Search?q=${enc(destShort)}`],
-      ["Events",`https://www.google.com/search?q=${enc("events in "+destShort+" this weekend")}`],
-      ["Open in Maps",`https://www.google.com/maps/search/?api=1&query=${enc(destShort)}`]
-    ].map(([t,u])=>`<a href="${u}" target="_blank" rel="noopener">${t}</a>`).join("");
-    $("moreHotels").href=mapsSearch("hotels",destShort);
-    $("moreFood").href=mapsSearch("restaurants",destShort);
-    $("moreFun").href=mapsSearch("entertainment",destShort);
-    $("moreSports").href=`https://www.ticketmaster.com/search?q=${enc(destShort)}`;
-    ["hotels","food","fun","sports"].forEach(id=>$(id).innerHTML='<div class="loading">Scanning the area…</div>');
-    try{
-      const pois=await overpass(B.lat,B.lon);
-      pois.forEach(p=>p.miAway=+hav(B,p).toFixed(1));
-      const by=c=>pois.filter(p=>p.cat===c).sort((a,b)=>a.miAway-b.miAway);
-      renderPOIs("hotels",by("hotel"),"hotels");renderPOIs("food",by("food"),"restaurants");
-      renderPOIs("fun",by("fun"),"entertainment");renderPOIs("sports",by("sports"),"stadiums & venues");
-    }catch(e){["hotels","food","fun","sports"].forEach(id=>renderPOIs(id,[],"options"));}
-    $("formnote").textContent=`Planned: ${shortName(A.name)} → ${destShort}. Set a date below and Save to track it.`;
+    renderItinerary(pts,legs);
+    // guides for every stop + destination (skip the start/origin)
+    const guidePts=pts.slice(1); // stops + dest
+    $("guides").innerHTML=guidePts.map((p,gi)=>placeCard(p,gi,gi===guidePts.length-1?"dest":"stop")).join("");
+    $("formnote").textContent=`Planned ${days}-day trip with ${stops.length} stop${stops.length===1?"":"s"} — building guides for each…`;
+    // sequential scans to be gentle on the free APIs
+    for(let gi=0;gi<guidePts.length;gi++){await fillGuide(guidePts[gi],gi);await sleep(350);}
+    $("formnote").textContent=`Trip ready: ${shortName(pts[0].name)} → ${shortName(pts[pts.length-1].name)}, ${days} day${days>1?"s":""}. Set a date and Save to track it.`;
     $("updated").textContent="Planned "+new Date().toLocaleTimeString(undefined,{hour:"numeric",minute:"2-digit"});
   }catch(e){
     $("formnote").classList.add("err");
-    $("formnote").textContent="Couldn't find one of those places — try adding a state (e.g. \"Branson, MO\").";
+    $("formnote").textContent="Couldn't find one of those places — add a state (e.g. \"Branson, MO\") and try again.";
   }finally{btn.disabled=false;btn.textContent="Plan Trip";}
 }
 
-/* upcoming travel */
+/* ---------- upcoming travel ---------- */
 function loadTrips(){try{return JSON.parse(localStorage.getItem("rw_trips")||"[]");}catch(e){return [];}}
 function saveTrips(a){try{localStorage.setItem("rw_trips",JSON.stringify(a));}catch(e){}}
 function dayDiff(d){const t=new Date();t.setHours(0,0,0,0);const x=new Date(d+"T00:00:00");return Math.round((x-t)/86400000);}
 function renderAgenda(){
   let trips=loadTrips();const today=new Date();today.setHours(0,0,0,0);
-  trips=trips.filter(t=>{const end=t.ret||t.depart;return new Date(end+"T00:00:00")>=today;});
-  saveTrips(trips);
+  trips=trips.filter(t=>new Date((t.ret||t.depart)+"T00:00:00")>=today);saveTrips(trips);
   trips.sort((a,b)=>new Date(a.depart)-new Date(b.depart));
   $("agendaCt").textContent=trips.length?`${trips.length} trip${trips.length>1?"s":""}`:"";
   if(!trips.length){$("agenda").innerHTML='<div class="empty">No trips saved yet — plan one below, set a date, and tap Save.</div>';return;}
@@ -395,16 +495,19 @@ function renderAgenda(){
     else {cd=`<div class="big">${dd}</div><div class="sm">Days</div>`;}
     const dates=new Date(t.depart+"T00:00:00").toLocaleDateString(undefined,{month:"short",day:"numeric"})
       +(t.ret?` – ${new Date(t.ret+"T00:00:00").toLocaleDateString(undefined,{month:"short",day:"numeric"})}`:"");
+    const nStops=(t.stops||[]).length;
     const title=t.label||shortName(t.destName||t.dest);
     return `<div class="item"><div class="cd ${now}">${cd}</div>`
       +`<div class="ai"><div class="at"><span class="m">${modeIcon(t.mode)}</span>${title}</div>`
-      +`<div class="ad">${shortName(t.startName||t.start)} → ${shortName(t.destName||t.dest)} · ${dates}</div></div>`
+      +`<div class="ad">${shortName(t.startName||t.start)} → ${shortName(t.destName||t.dest)} · ${dates}${nStops?` · ${nStops} stop${nStops>1?"s":""}`:""}</div></div>`
       +`<div class="ax"><button data-act="open" data-id="${t.id}">Open</button><button data-act="del" data-id="${t.id}">✕</button></div></div>`;
   }).join("");
   $("agenda").querySelectorAll("button").forEach(b=>b.onclick=()=>{
     const id=b.dataset.id, trips=loadTrips();
     if(b.dataset.act==="del"){saveTrips(trips.filter(t=>t.id!==id));renderAgenda();}
-    else{const t=trips.find(x=>x.id===id);if(t){$("start").value=t.start;$("dest").value=t.dest;MODE=t.mode||"drive";renderModes();
+    else{const t=trips.find(x=>x.id===id);if(t){
+      $("start").value=t.start;$("dest").value=t.dest;MODE=t.mode||"drive";renderModes();
+      $("stops").innerHTML="";(t.stops||[]).forEach(s=>addStopRow(s.q,s.overnight));
       $("svLabel").value=t.label||"";$("svDepart").value=t.depart||"";$("svReturn").value=t.ret||"";
       window.scrollTo({top:0,behavior:"smooth"});plan();}}
   });
@@ -412,16 +515,21 @@ function renderAgenda(){
 $("svBtn").onclick=()=>{
   const depart=$("svDepart").value;
   if(!depart){$("formnote").classList.add("err");$("formnote").textContent="Pick a depart date to save the trip.";return;}
+  const stops=collectStops();
   const trips=loadTrips();
   trips.push({id:"t"+Date.now(),label:$("svLabel").value.trim(),
     start:$("start").value.trim(),dest:$("dest").value.trim(),
-    startName:START?shortName(START.name):$("start").value.trim(),destName:DEST?shortName(DEST.name):$("dest").value.trim(),
-    mode:MODE,depart,ret:$("svReturn").value||""});
+    startName:LAST?shortName(LAST.pts[0].name):$("start").value.trim(),
+    destName:LAST?shortName(LAST.pts[LAST.pts.length-1].name):$("dest").value.trim(),
+    mode:MODE,stops,depart,ret:$("svReturn").value||""});
   saveTrips(trips);renderAgenda();
   $("formnote").classList.remove("err");$("formnote").textContent="Saved to Upcoming Travel ✓";
 };
 
+/* ---------- wiring ---------- */
 $("planBtn").onclick=plan;
+$("addStop").onclick=()=>addStopRow("",false);
+$("sugBtn").onclick=suggestOvernights;
 ["start","dest"].forEach(id=>$(id).addEventListener("keydown",e=>{if(e.key==="Enter")plan();}));
 $("geoBtn").onclick=()=>{
   if(!navigator.geolocation){$("formnote").textContent="Geolocation isn't available in this browser.";return;}
@@ -440,7 +548,8 @@ $("geoBtn").onclick=()=>{
 
 renderModes();renderAgenda();
 (function(){try{const t=JSON.parse(localStorage.getItem("rw_trip")||"null");
-  if(t){$("start").value=t.s||"";$("dest").value=t.d||"";if(t.mode){MODE=t.mode;renderModes();}}}catch(e){}})();
+  if(t){$("start").value=t.s||"";$("dest").value=t.d||"";if(t.mode){MODE=t.mode;renderModes();}
+    (t.stops||[]).forEach(s=>addStopRow(s.q,s.overnight));}}catch(e){}})();
 </script>
 </body>
 </html>
