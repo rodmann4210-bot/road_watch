@@ -37,7 +37,6 @@
   .p-head .ct{font-family:'Barlow Condensed';letter-spacing:1px;color:var(--muted-2);font-size:12px;text-transform:uppercase}
   .p-body{padding:10px 16px 14px}
 
-  /* agenda */
   .agenda .item{display:flex;align-items:center;gap:13px;padding:11px 0;border-bottom:1px solid var(--line-soft)}
   .agenda .item:last-child{border:none}
   .agenda .cd{text-align:center;min-width:62px}
@@ -53,7 +52,6 @@
   .agenda .ax button:hover{color:var(--gold);border-color:var(--line)}
   .agenda .empty{font-family:'Barlow Condensed';letter-spacing:.4px;color:var(--muted-2);font-size:13.5px;padding:4px 0}
 
-  /* planner */
   .pl-card{padding:16px}
   .field{position:relative;margin-bottom:10px}
   .field label{font-family:'Barlow Condensed';letter-spacing:1.5px;text-transform:uppercase;color:var(--muted-2);font-size:11px;display:block;margin-bottom:5px}
@@ -61,7 +59,7 @@
   .field input.place:focus{outline:none;border-color:var(--primary-bright)}
   .field .geo{position:absolute;right:8px;top:30px;background:none;border:none;color:var(--gold);cursor:pointer;font-size:15px;padding:4px}
   #stops .stoprow{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-  #stops .stoprow input{flex:1;background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:11px 13px;font-family:'Barlow';font-size:15px}
+  #stops .stoprow input.sp{flex:1;background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:11px 13px;font-family:'Barlow';font-size:15px}
   #stops .stoprow .ov{display:flex;align-items:center;gap:5px;font-family:'Barlow Condensed';letter-spacing:.5px;text-transform:uppercase;color:var(--muted-2);font-size:11px;cursor:pointer;white-space:nowrap}
   #stops .stoprow .ov input{width:16px;height:16px;accent-color:var(--primary-bright)}
   #stops .stoprow .rm{background:none;border:1px solid var(--line-soft);color:var(--muted-2);border-radius:7px;padding:9px 11px;cursor:pointer}
@@ -69,9 +67,12 @@
   .stopslabel{font-family:'Barlow Condensed';letter-spacing:1.5px;text-transform:uppercase;color:var(--muted-2);font-size:11px;margin:2px 0 6px}
   .addstop{font-family:'Barlow Condensed';letter-spacing:1px;text-transform:uppercase;font-size:12px;background:var(--panel-2);border:1px dashed var(--line);color:var(--muted);border-radius:8px;padding:9px 14px;cursor:pointer;margin-bottom:12px}
   .addstop:hover{color:var(--gold)}
-  .modes{display:flex;gap:7px;flex-wrap:wrap;margin:4px 0 12px}
-  .modes button{font-family:'Barlow Condensed';letter-spacing:1px;text-transform:uppercase;font-size:12.5px;color:var(--muted);background:var(--bg);border:1px solid var(--line-soft);border-radius:8px;padding:8px 13px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .15s}
-  .modes button.on{background:linear-gradient(160deg,var(--primary),var(--primary-deep));color:#fff;border-color:transparent}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;margin:4px 0 12px}
+  .chips button{font-family:'Barlow Condensed';letter-spacing:1px;text-transform:uppercase;font-size:12.5px;color:var(--muted);background:var(--bg);border:1px solid var(--line-soft);border-radius:8px;padding:8px 12px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .15s}
+  .chips button.on{background:linear-gradient(160deg,var(--primary),var(--primary-deep));color:#fff;border-color:transparent}
+  .chips.cats button.on{background:var(--panel-2);color:var(--gold);border-color:var(--gold)}
+  .sublabel{font-family:'Barlow Condensed';letter-spacing:1.5px;text-transform:uppercase;color:var(--muted-2);font-size:11px;margin:8px 0 4px;display:flex;justify-content:space-between}
+  .sublabel .mini-act{color:var(--gold-dim);cursor:pointer}.sublabel .mini-act:hover{color:var(--gold)}
   .opts{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
   .opts .hf{display:flex;align-items:center;gap:7px;font-family:'Barlow Condensed';letter-spacing:.5px;text-transform:uppercase;color:var(--muted-2);font-size:12px}
   .opts .hf input{width:58px;background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:7px;padding:7px 9px;font-family:'Oswald';text-align:center;font-size:14px}
@@ -82,7 +83,6 @@
   .formnote{font-family:'Barlow Condensed';letter-spacing:.5px;color:var(--muted-2);font-size:12px;margin-top:11px}
   .formnote.err{color:var(--red)}
 
-  /* summary hero */
   .hero{background:linear-gradient(135deg,var(--primary),var(--primary-deep));border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:16px;display:none}
   .hero.show{display:block}
   .hero .route{font-family:'Oswald';font-weight:700;font-size:clamp(18px,3.4vw,24px);letter-spacing:.5px;line-height:1.2}
@@ -100,7 +100,6 @@
   .savebar .lbl{min-width:140px}
   .savebar button{font-family:'Oswald';font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:12px;background:var(--gold);color:var(--bg);border:none;border-radius:7px;padding:10px 18px;cursor:pointer}
 
-  /* itinerary */
   .day{padding:12px 0;border-bottom:1px solid var(--line-soft)}
   .day:last-child{border:none}
   .day .dh{font-family:'Oswald';font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:15px;color:var(--gold);display:flex;justify-content:space-between;align-items:baseline}
@@ -111,7 +110,6 @@
   .day .sleep{font-family:'Barlow Condensed';letter-spacing:.5px;text-transform:uppercase;color:var(--green);font-size:12px;padding:3px 0 3px 4px}
   .warn{color:var(--red);font-family:'Barlow Condensed';font-size:12.5px;letter-spacing:.4px;margin-top:6px}
 
-  /* place guides */
   .place{background:var(--panel);border:1px solid var(--line-soft);border-radius:14px;margin-bottom:14px;overflow:hidden}
   .place .ph{display:flex;align-items:center;gap:9px;padding:13px 16px;border-bottom:1px solid var(--line-soft);flex-wrap:wrap}
   .place .pin{font-size:16px}
@@ -121,17 +119,15 @@
   .place .badge.dest{background:rgba(242,181,61,.16);color:var(--gold)}
   .place .pwx{font-family:'Barlow Condensed';letter-spacing:.5px;font-size:13px;color:var(--muted)}
   .place .pwx .t{font-family:'Oswald';font-weight:700;color:var(--gold);font-size:15px}
-  .pcols{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-soft)}
-  @media(max-width:760px){.pcols{grid-template-columns:repeat(2,1fr)}}
+  .pcols{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:1px;background:var(--line-soft)}
   .pcol{background:var(--panel);padding:12px 14px}
-  .pcol h4{font-family:'Oswald';font-weight:600;letter-spacing:1px;text-transform:uppercase;font-size:12.5px;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-  .pcol h4 .mm{font-family:'Barlow Condensed';color:var(--gold-dim);font-size:11px}.pcol h4 .mm:hover{color:var(--gold)}
+  .pcol h4{font-family:'Oswald';font-weight:600;letter-spacing:1px;text-transform:uppercase;font-size:12.5px;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:6px}
+  .pcol h4 .mm{font-family:'Barlow Condensed';color:var(--gold-dim);font-size:11px;white-space:nowrap}.pcol h4 .mm:hover{color:var(--gold)}
   .pcol .mini{font-size:13px;padding:5px 0;border-bottom:1px solid var(--line-soft);line-height:1.25}
   .pcol .mini:last-child{border:none}
   .pcol .mini .mn{font-weight:600;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .pcol .mini .mx{font-family:'Barlow Condensed';color:var(--muted-2);font-size:11px;text-transform:uppercase}
-  .pcol .none{font-family:'Barlow Condensed';color:var(--muted-2);font-size:12px;padding:5px 0}
-  .pcol .scan{font-family:'Barlow Condensed';color:var(--muted-2);font-size:12px;padding:5px 0}
+  .pcol .none,.pcol .scan{font-family:'Barlow Condensed';color:var(--muted-2);font-size:12px;padding:5px 0}
 
   .launch{position:fixed;right:20px;bottom:20px;z-index:40;display:flex;align-items:center;gap:9px;font-family:'Oswald';font-weight:700;letter-spacing:1.5px;text-transform:uppercase;font-size:13px;border-radius:50px;padding:13px 20px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.5);transition:transform .15s;background:linear-gradient(160deg,var(--gold),var(--gold-dim));color:var(--bg);border:none}
   .launch:hover{transform:translateY(-2px)}
@@ -189,13 +185,15 @@
       <label>Destination</label>
       <input class="place" id="dest" placeholder="Where are you headed?" autocomplete="off">
     </div>
-    <div class="modes" id="modes"></div>
+    <div class="chips" id="modes"></div>
+    <div class="sublabel"><span>Guide categories — shown at every stop</span><span class="mini-act" id="catAll">All / Reset</span></div>
+    <div class="chips cats" id="cats"></div>
     <div class="opts">
       <span class="hf">Max drive/day <input id="maxHrs" type="number" min="1" max="24" value="8"> hrs</span>
       <button class="sug" id="sugBtn">Suggest overnights</button>
     </div>
     <button class="planbtn" id="planBtn">Plan Trip</button>
-    <div class="formnote" id="formnote">Add any stops, flag the ones you'll sleep at as 🛏 overnight, and every stop gets its own guide. Save with a date to track it.</div>
+    <div class="formnote" id="formnote">Add stops, flag overnights, pick which guide categories to show — then plan. Save with a date to track it.</div>
   </section>
 
   <section class="hero" id="hero">
@@ -262,6 +260,25 @@ const MODES=[["drive","🚗","Drive"],["walk","🚶","Walk"],["bike","🚲","Bik
 const GMODE={drive:"driving",walk:"walking",bike:"bicycling",transit:"transit"};
 const modeIcon=m=>(MODES.find(x=>x[0]===m)||["","🚗"])[1];
 
+/* guide category catalog */
+const CATS=[
+  {k:"hotel", ic:"🏨",lbl:"Hotels",     term:"hotels",        q:['nwr["tourism"~"^(hotel|motel|guest_house|hostel)$"]'], match:t=>/^(hotel|motel|guest_house|hostel)$/.test(t.tourism||"")},
+  {k:"food",  ic:"🍽️",lbl:"Food",       term:"restaurants",   q:['nwr["amenity"="restaurant"]'], match:t=>t.amenity==="restaurant"},
+  {k:"coffee",ic:"☕",lbl:"Coffee",     term:"coffee",        q:['nwr["amenity"="cafe"]'], match:t=>t.amenity==="cafe"},
+  {k:"bars",  ic:"🍺",lbl:"Bars",       term:"bars",          q:['nwr["amenity"~"^(bar|pub)$"]'], match:t=>/^(bar|pub)$/.test(t.amenity||"")},
+  {k:"fun",   ic:"🎭",lbl:"Attractions",term:"things to do",  q:['nwr["tourism"~"^(attraction|museum|viewpoint|artwork|zoo|theme_park)$"]','nwr["amenity"~"^(cinema|theatre|nightclub)$"]'], match:t=>/^(attraction|museum|viewpoint|artwork|zoo|theme_park)$/.test(t.tourism||"")||/^(cinema|theatre|nightclub)$/.test(t.amenity||"")},
+  {k:"sports",ic:"🏟️",lbl:"Sports",     term:"sports",tix:1,  q:['nwr["leisure"~"^(stadium|sports_centre)$"]'], match:t=>/^(stadium|sports_centre)$/.test(t.leisure||"")},
+  {k:"parks", ic:"🌳",lbl:"Parks",      term:"parks",         q:['nwr["leisure"~"^(park|nature_reserve|garden)$"]'], match:t=>/^(park|nature_reserve|garden)$/.test(t.leisure||"")},
+  {k:"fuel",  ic:"⛽",lbl:"Fuel",       term:"gas stations",  q:['nwr["amenity"="fuel"]'], match:t=>t.amenity==="fuel"},
+  {k:"ev",    ic:"🔌",lbl:"EV Charge",  term:"ev charging",   q:['nwr["amenity"="charging_station"]'], match:t=>t.amenity==="charging_station"},
+  {k:"shop",  ic:"🛍️",lbl:"Shopping",   term:"shopping",      q:['nwr["shop"~"^(mall|department_store|supermarket)$"]'], match:t=>/^(mall|department_store|supermarket)$/.test(t.shop||"")},
+  {k:"health",ic:"⚕️",lbl:"Health",     term:"pharmacy",      q:['nwr["amenity"~"^(pharmacy|hospital|clinic|doctors)$"]'], match:t=>/^(pharmacy|hospital|clinic|doctors)$/.test(t.amenity||"")},
+  {k:"camp",  ic:"⛺",lbl:"Camping",    term:"campgrounds",   q:['nwr["tourism"~"^(camp_site|caravan_site)$"]'], match:t=>/^(camp_site|caravan_site)$/.test(t.tourism||"")}
+];
+const CATMAP=Object.fromEntries(CATS.map(c=>[c.k,c]));
+let SELCATS=new Set(["hotel","food","fun","sports"]);
+try{const sc=JSON.parse(localStorage.getItem("rw_cats")||"null");if(Array.isArray(sc)&&sc.length)SELCATS=new Set(sc);}catch(e){}
+
 async function getJSON(u,opt){const r=await fetch(u,opt||{});if(!r.ok)throw new Error(r.status);return r.json();}
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 function miles(m){return Math.round(m/1609.34);}
@@ -270,6 +287,27 @@ function hav(a,b){const R=3958.8,dl=(b.lat-a.lat)*Math.PI/180,dn=(b.lon-a.lon)*M
   const x=Math.sin(dl/2)**2+Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dn/2)**2;
   return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
 function shortName(dn){return (dn||"").split(",").slice(0,2).join(",");}
+
+/* ---------- chips ---------- */
+function renderModes(){
+  $("modes").innerHTML=MODES.map(([k,i,l])=>`<button data-m="${k}" class="${k===MODE?'on':''}">${i} ${l}</button>`).join("");
+  $("modes").querySelectorAll("button").forEach(b=>b.onclick=()=>{MODE=b.dataset.m;renderModes();});
+}
+function renderCats(){
+  $("cats").innerHTML=CATS.map(c=>`<button data-c="${c.k}" class="${SELCATS.has(c.k)?'on':''}">${c.ic} ${c.lbl}</button>`).join("");
+  $("cats").querySelectorAll("button").forEach(b=>b.onclick=()=>{
+    const k=b.dataset.c;if(SELCATS.has(k))SELCATS.delete(k);else SELCATS.add(k);
+    if(!SELCATS.size)SELCATS.add("hotel");
+    try{localStorage.setItem("rw_cats",JSON.stringify([...SELCATS]));}catch(e){}
+    renderCats();
+    if(LAST){$("formnote").classList.remove("err");$("formnote").textContent="Categories changed — tap Plan Trip to refresh the stop guides.";}
+  });
+}
+$("catAll").onclick=()=>{
+  SELCATS = SELCATS.size>=CATS.length ? new Set(["hotel","food","fun","sports"]) : new Set(CATS.map(c=>c.k));
+  try{localStorage.setItem("rw_cats",JSON.stringify([...SELCATS]));}catch(e){}
+  renderCats();
+};
 
 /* ---------- stop rows ---------- */
 function addStopRow(val,overnight){
@@ -282,11 +320,6 @@ function addStopRow(val,overnight){
 }
 function collectStops(){return [...$("stops").querySelectorAll(".stoprow")].map(r=>({
   q:r.querySelector(".sp").value.trim(), overnight:r.querySelector(".ovc").checked})).filter(s=>s.q);}
-
-function renderModes(){
-  $("modes").innerHTML=MODES.map(([k,i,l])=>`<button data-m="${k}" class="${k===MODE?'on':''}">${i} ${l}</button>`).join("");
-  $("modes").querySelectorAll("button").forEach(b=>b.onclick=()=>{MODE=b.dataset.m;renderModes();});
-}
 
 /* ---------- services ---------- */
 async function geocode(q){
@@ -311,29 +344,21 @@ async function weather(lat,lon){
   try{const d=await getJSON(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&temperature_unit=fahrenheit&timezone=auto&forecast_days=1`);
     const c=d.current||{};return {t:Math.round(c.temperature_2m),code:c.weather_code,hi:Math.round(d.daily.temperature_2m_max[0]),lo:Math.round(d.daily.temperature_2m_min[0])};}catch(e){return null;}
 }
-async function overpass(lat,lon){
-  const q=`[out:json][timeout:25];(`
-    +`nwr["tourism"~"^(hotel|motel|guest_house)$"](around:6000,${lat},${lon});`
-    +`nwr["amenity"="restaurant"](around:6000,${lat},${lon});`
-    +`nwr["amenity"~"^(cinema|theatre|nightclub)$"](around:6000,${lat},${lon});`
-    +`nwr["tourism"="attraction"](around:6000,${lat},${lon});`
-    +`nwr["leisure"~"^(stadium|sports_centre)$"](around:6000,${lat},${lon});`
-    +`);out center tags 160;`;
+async function overpass(lat,lon,keys){
+  const sel=keys.map(k=>CATMAP[k]).filter(Boolean);
+  if(!sel.length)return [];
+  const lines=sel.flatMap(c=>c.q).map(f=>`${f}(around:6000,${lat},${lon});`).join("");
+  const q=`[out:json][timeout:25];(${lines});out center tags 220;`;
   const d=await getJSON(`https://overpass-api.de/api/interpreter?data=${enc(q)}`);
   return (d.elements||[]).map(e=>{
     const t=e.tags||{};const la=e.lat||(e.center&&e.center.lat),lo=e.lon||(e.center&&e.center.lon);
-    if(!la||!lo||!t.name)return null;
-    let cat="";
-    if(/^(hotel|motel|guest_house)$/.test(t.tourism||""))cat="hotel";
-    else if(t.amenity==="restaurant")cat="food";
-    else if(/^(cinema|theatre|nightclub)$/.test(t.amenity||""))cat="fun";
-    else if(t.tourism==="attraction")cat="fun";
-    else if(/^(stadium|sports_centre)$/.test(t.leisure||""))cat="sports";
-    if(!cat)return null;
-    return {name:t.name,cat,meta:(t.cuisine||t.amenity||t.tourism||t.leisure||"").replace(/_/g," "),lat:la,lon:lo};
+    const nm=t.name||t.brand||t.operator;if(!la||!lo||!nm)return null;
+    const hit=sel.find(c=>c.match(t));if(!hit)return null;
+    return {name:nm,cat:hit.k,meta:(t.cuisine||t.amenity||t.tourism||t.leisure||t.shop||"").replace(/_/g," "),lat:la,lon:lo};
   }).filter(Boolean);
 }
 function mapsSearch(term,name){return `https://www.google.com/maps/search/?api=1&query=${enc(term)}+near+${enc(name)}`;}
+function ticketLink(name){return `https://www.ticketmaster.com/search?q=${enc(name)}`;}
 function fullRouteLink(pts){
   const o=pts[0].q, d=pts[pts.length-1].q, mids=pts.slice(1,-1).map(p=>p.q);
   if(MODE==="fly")return `https://www.google.com/travel/flights?q=${enc("Flights from "+o+" to "+d)}`;
@@ -343,23 +368,18 @@ function fullRouteLink(pts){
 }
 
 /* ---------- itinerary ---------- */
-function buildDays(pts,legs){
-  // legs[i] connects pts[i]->pts[i+1]; day ends at an overnight stop or the final dest
+function buildDays(pts){
   const days=[];let cur={from:0,legIdx:[]};
   for(let i=0;i<pts.length-1;i++){
-    cur.legIdx.push(i);
-    const end=pts[i+1];
-    if((end.overnight && i+1<pts.length-1) || i+1===pts.length-1){
-      cur.to=i+1;days.push(cur);cur={from:i+1,legIdx:[]};
-    }
+    cur.legIdx.push(i);const end=pts[i+1];
+    if((end.overnight && i+1<pts.length-1) || i+1===pts.length-1){cur.to=i+1;days.push(cur);cur={from:i+1,legIdx:[]};}
   }
   return days;
 }
 function renderItinerary(pts,legs){
-  const days=buildDays(pts,legs);
+  const days=buildDays(pts);
   $("itinCt").textContent=`${days.length} day${days.length>1?"s":""}`;
-  let warn="";
-  const maxSec=(parseFloat($("maxHrs").value)||8)*3600;
+  let warn="";const maxSec=(parseFloat($("maxHrs").value)||8)*3600;
   $("itinerary").innerHTML=days.map((d,di)=>{
     let dDist=0,dDur=0;
     const legHtml=d.legIdx.map(li=>{const lg=legs?legs[li]:null;const a=pts[li],b=pts[li+1];
@@ -370,7 +390,7 @@ function renderItinerary(pts,legs){
     if(legs&&dDur>maxSec)warn=`Day ${di+1} runs ${hrs(dDur)} of driving — over your ${$("maxHrs").value}h target. Add a stop or flag an earlier overnight.`;
     const endPt=pts[d.to];const isFinal=d.to===pts.length-1;
     const sleepLine=isFinal?`<div class="sleep">🏁 Arrive ${shortName(endPt.name)}</div>`:`<div class="sleep">🛏 Overnight · ${shortName(endPt.name)}</div>`;
-    const tot=legs?`${miles(dDist)} mi · ${hrs(dDur)}`:`${"~"}`;
+    const tot=legs?`${miles(dDist)} mi · ${hrs(dDur)}`:"";
     return `<div class="day"><div class="dh">Day ${di+1}<span class="dt">${tot}</span></div>${legHtml}${sleepLine}</div>`;
   }).join("")+(warn?`<div class="warn">⚠ ${warn}</div>`:"");
   $("itinPanel").style.display="block";
@@ -378,51 +398,39 @@ function renderItinerary(pts,legs){
 function suggestOvernights(){
   if(!LAST||!LAST.legs){$("formnote").classList.add("err");$("formnote").textContent="Plan the trip first, then I can suggest overnight splits.";return;}
   const {pts,legs}=LAST;const maxSec=(parseFloat($("maxHrs").value)||8)*3600;
-  // clear current overnight flags on stop rows
   const rows=[...$("stops").querySelectorAll(".stoprow")];
   pts.forEach(p=>p.overnight=false);rows.forEach(r=>r.querySelector(".ovc").checked=false);
   let acc=0;
-  for(let i=0;i<legs.length;i++){
-    acc+=legs[i].dur;
-    const nextIsStop=(i+1)>=1 && (i+1)<=rows.length; // pts[i+1] is a stop row (index i)
-    if(acc>maxSec && nextIsStop){pts[i+1].overnight=true;rows[i].querySelector(".ovc").checked=true;acc=0;}
-  }
+  for(let i=0;i<legs.length;i++){acc+=legs[i].dur;
+    const nextIsStop=(i+1)>=1 && (i+1)<=rows.length;
+    if(acc>maxSec && nextIsStop){pts[i+1].overnight=true;rows[i].querySelector(".ovc").checked=true;acc=0;}}
   renderItinerary(pts,legs);
-  $("formnote").classList.remove("err");
-  $("formnote").textContent="Overnights suggested to keep each day under "+$("maxHrs").value+"h. Adjust the 🛏 boxes as you like.";
+  $("formnote").classList.remove("err");$("formnote").textContent="Overnights suggested to keep each day under "+$("maxHrs").value+"h. Adjust the 🛏 boxes as you like.";
 }
 
-/* ---------- place guides (every stop = a destination) ---------- */
+/* ---------- place guides ---------- */
 function miniList(items){
-  if(!items.length)return `<div class="none">— use Maps ↗</div>`;
+  if(!items.length)return `<div class="none">— use link ↗</div>`;
   return items.slice(0,3).map(p=>`<div class="mini"><span class="mn">${p.name}</span><span class="mx">${p.meta||""}${p.miAway!=null?` · ${p.miAway} mi`:""}</span></div>`).join("");
 }
 function placeCard(pt,i,kind){
   const badge=kind==="dest"?`<span class="badge dest">Destination</span>`:(pt.overnight?`<span class="badge ov">🛏 Overnight</span>`:"");
   const nm=shortName(pt.name);
-  return `<div class="place" id="place_${i}">
-    <div class="ph"><span class="pin">📍</span><span class="pnm">${nm}</span>${badge}<span class="pwx" id="wx_${i}">…</span></div>
-    <div class="pcols">
-      <div class="pcol"><h4>🏨 Hotels <a class="mm" href="${mapsSearch("hotels",nm)}" target="_blank" rel="noopener">Maps↗</a></h4><div id="h_${i}"><div class="scan">scanning…</div></div></div>
-      <div class="pcol"><h4>🍽️ Food <a class="mm" href="${mapsSearch("restaurants",nm)}" target="_blank" rel="noopener">Maps↗</a></h4><div id="f_${i}"><div class="scan">scanning…</div></div></div>
-      <div class="pcol"><h4>🎭 Fun <a class="mm" href="${mapsSearch("things to do",nm)}" target="_blank" rel="noopener">Maps↗</a></h4><div id="e_${i}"><div class="scan">scanning…</div></div></div>
-      <div class="pcol"><h4>🏟️ Sports <a class="mm" href="https://www.ticketmaster.com/search?q=${enc(nm)}" target="_blank" rel="noopener">Tix↗</a></h4><div id="s_${i}"><div class="scan">scanning…</div></div></div>
-    </div></div>`;
+  const cols=CATS.filter(c=>SELCATS.has(c.k)).map(c=>{
+    const link=c.tix?ticketLink(nm):mapsSearch(c.term,nm);const lab=c.tix?"Tix↗":"Maps↗";
+    return `<div class="pcol"><h4>${c.ic} ${c.lbl} <a class="mm" href="${link}" target="_blank" rel="noopener">${lab}</a></h4><div id="g_${c.k}_${i}"><div class="scan">scanning…</div></div></div>`;
+  }).join("");
+  return `<div class="place" id="place_${i}"><div class="ph"><span class="pin">📍</span><span class="pnm">${nm}</span>${badge}<span class="pwx" id="wx_${i}">…</span></div><div class="pcols">${cols}</div></div>`;
 }
 async function fillGuide(pt,i){
   weather(pt.lat,pt.lon).then(w=>{const el=$("wx_"+i);if(!el)return;
     el.innerHTML=w?`<span class="t">${w.t}°</span> ${WMO[w.code]||""} · H ${w.hi}°/L ${w.lo}°`:"";});
+  const keys=[...SELCATS];
   try{
-    const pois=await overpass(pt.lat,pt.lon);
+    const pois=await overpass(pt.lat,pt.lon,keys);
     pois.forEach(p=>p.miAway=+hav(pt,p).toFixed(1));
-    const by=c=>pois.filter(p=>p.cat===c).sort((a,b)=>a.miAway-b.miAway);
-    if($("h_"+i))$("h_"+i).innerHTML=miniList(by("hotel"));
-    if($("f_"+i))$("f_"+i).innerHTML=miniList(by("food"));
-    if($("e_"+i))$("e_"+i).innerHTML=miniList(by("fun"));
-    if($("s_"+i))$("s_"+i).innerHTML=miniList(by("sports"));
-  }catch(e){
-    ["h_","f_","e_","s_"].forEach(p=>{if($(p+i))$(p+i).innerHTML='<div class="none">— use Maps ↗</div>';});
-  }
+    keys.forEach(k=>{const el=$(`g_${k}_${i}`);if(el)el.innerHTML=miniList(pois.filter(p=>p.cat===k).sort((a,b)=>a.miAway-b.miAway));});
+  }catch(e){keys.forEach(k=>{const el=$(`g_${k}_${i}`);if(el)el.innerHTML='<div class="none">— use link ↗</div>';});}
 }
 
 /* ---------- plan ---------- */
@@ -435,16 +443,12 @@ async function plan(){
   try{localStorage.setItem("rw_trip",JSON.stringify({s:startQ,d:destQ,mode:MODE,stops}));}catch(e){}
   try{
     const queries=[{q:startQ},...stops,{q:destQ}];
-    const resolved=await Promise.all(queries.map(async x=>{const g=await geocode(x.q);return {q:x.q,name:g.name,lat:g.lat,lon:g.lon,overnight:!!x.overnight};}));
-    const pts=resolved;
+    const pts=await Promise.all(queries.map(async x=>{const g=await geocode(x.q);return {q:x.q,name:g.name,lat:g.lat,lon:g.lon,overnight:!!x.overnight};}));
     const legs=MODE==="drive"?await routeAll(pts):null;
     LAST={pts,legs,mode:MODE};
-    // hero summary
-    let totDist=0,totDur=0;
-    if(legs)legs.forEach(l=>{totDist+=l.dist;totDur+=l.dur;});
-    const chain=pts.map(p=>shortName(p.name)).join('<span class="arr">→</span>');
-    $("heroRoute").innerHTML=`${modeIcon(MODE)} ${chain}`;
-    const days=buildDays(pts,legs).length;
+    let totDist=0,totDur=0;if(legs)legs.forEach(l=>{totDist+=l.dist;totDur+=l.dur;});
+    $("heroRoute").innerHTML=`${modeIcon(MODE)} ${pts.map(p=>shortName(p.name)).join('<span class="arr">→</span>')}`;
+    const days=buildDays(pts).length;
     if(legs){
       $("heroStats").innerHTML=`<div class="hstat"><div class="n">${miles(totDist)}</div><div class="l">Total Miles</div></div>`
         +`<div class="hstat"><div class="n">${hrs(totDur)}</div><div class="l">Drive Time</div></div>`
@@ -462,24 +466,21 @@ async function plan(){
     $("hero").classList.add("show");
     if(!$("svDepart").value)$("svDepart").value=new Date().toISOString().slice(0,10);
     renderItinerary(pts,legs);
-    // guides for every stop + destination (skip the start/origin)
-    const guidePts=pts.slice(1); // stops + dest
+    const guidePts=pts.slice(1);
     $("guides").innerHTML=guidePts.map((p,gi)=>placeCard(p,gi,gi===guidePts.length-1?"dest":"stop")).join("");
-    $("formnote").textContent=`Planned ${days}-day trip with ${stops.length} stop${stops.length===1?"":"s"} — building guides for each…`;
-    // sequential scans to be gentle on the free APIs
+    $("formnote").textContent=`Planned ${days}-day trip with ${stops.length} stop${stops.length===1?"":"s"} — building guides…`;
     for(let gi=0;gi<guidePts.length;gi++){await fillGuide(guidePts[gi],gi);await sleep(350);}
     $("formnote").textContent=`Trip ready: ${shortName(pts[0].name)} → ${shortName(pts[pts.length-1].name)}, ${days} day${days>1?"s":""}. Set a date and Save to track it.`;
     $("updated").textContent="Planned "+new Date().toLocaleTimeString(undefined,{hour:"numeric",minute:"2-digit"});
   }catch(e){
-    $("formnote").classList.add("err");
-    $("formnote").textContent="Couldn't find one of those places — add a state (e.g. \"Branson, MO\") and try again.";
+    $("formnote").classList.add("err");$("formnote").textContent="Couldn't find one of those places — add a state (e.g. \"Branson, MO\") and try again.";
   }finally{btn.disabled=false;btn.textContent="Plan Trip";}
 }
 
 /* ---------- upcoming travel ---------- */
 function loadTrips(){try{return JSON.parse(localStorage.getItem("rw_trips")||"[]");}catch(e){return [];}}
 function saveTrips(a){try{localStorage.setItem("rw_trips",JSON.stringify(a));}catch(e){}}
-function dayDiff(d){const t=new Date();t.setHours(0,0,0,0);const x=new Date(d+"T00:00:00");return Math.round((x-t)/86400000);}
+function dayDiff(d){const t=new Date();t.setHours(0,0,0,0);return Math.round((new Date(d+"T00:00:00")-t)/86400000);}
 function renderAgenda(){
   let trips=loadTrips();const today=new Date();today.setHours(0,0,0,0);
   trips=trips.filter(t=>new Date((t.ret||t.depart)+"T00:00:00")>=today);saveTrips(trips);
@@ -495,8 +496,7 @@ function renderAgenda(){
     else {cd=`<div class="big">${dd}</div><div class="sm">Days</div>`;}
     const dates=new Date(t.depart+"T00:00:00").toLocaleDateString(undefined,{month:"short",day:"numeric"})
       +(t.ret?` – ${new Date(t.ret+"T00:00:00").toLocaleDateString(undefined,{month:"short",day:"numeric"})}`:"");
-    const nStops=(t.stops||[]).length;
-    const title=t.label||shortName(t.destName||t.dest);
+    const nStops=(t.stops||[]).length;const title=t.label||shortName(t.destName||t.dest);
     return `<div class="item"><div class="cd ${now}">${cd}</div>`
       +`<div class="ai"><div class="at"><span class="m">${modeIcon(t.mode)}</span>${title}</div>`
       +`<div class="ad">${shortName(t.startName||t.start)} → ${shortName(t.destName||t.dest)} · ${dates}${nStops?` · ${nStops} stop${nStops>1?"s":""}`:""}</div></div>`
@@ -515,8 +515,7 @@ function renderAgenda(){
 $("svBtn").onclick=()=>{
   const depart=$("svDepart").value;
   if(!depart){$("formnote").classList.add("err");$("formnote").textContent="Pick a depart date to save the trip.";return;}
-  const stops=collectStops();
-  const trips=loadTrips();
+  const stops=collectStops();const trips=loadTrips();
   trips.push({id:"t"+Date.now(),label:$("svLabel").value.trim(),
     start:$("start").value.trim(),dest:$("dest").value.trim(),
     startName:LAST?shortName(LAST.pts[0].name):$("start").value.trim(),
@@ -546,7 +545,7 @@ $("geoBtn").onclick=()=>{
   document.addEventListener("keydown",e=>{if(e.key==="Escape")close();});
 })();
 
-renderModes();renderAgenda();
+renderModes();renderCats();renderAgenda();
 (function(){try{const t=JSON.parse(localStorage.getItem("rw_trip")||"null");
   if(t){$("start").value=t.s||"";$("dest").value=t.d||"";if(t.mode){MODE=t.mode;renderModes();}
     (t.stops||[]).forEach(s=>addStopRow(s.q,s.overnight));}}catch(e){}})();
