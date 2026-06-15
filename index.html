@@ -1,0 +1,446 @@
+<!-- © 2026 Roderick Grimes. All rights reserved. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Road Watch — Trip Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#2ea876; --primary-deep:#1c7250; --primary-bright:#46d690;
+    --gold:#f2b53d; --gold-dim:#c7902f;
+    --bg:#0a0f0d; --bg-2:#101713; --panel:#121b16; --panel-2:#18241d;
+    --line:rgba(242,181,61,.18); --line-soft:rgba(70,214,144,.10);
+    --ink:#eef4f0; --muted:#aeb9b2; --muted-2:#7c887f;
+    --red:#ff8478; --green:#6ee0a3;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Barlow',system-ui,sans-serif;min-height:100dvh;
+    background-image:radial-gradient(120% 70% at 50% -10%,rgba(46,168,118,.16),transparent 60%);}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 16px 40px}
+  a{color:inherit;text-decoration:none}
+
+  header{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:24px 0 14px}
+  .brand h1{font-family:'Oswald';font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:clamp(24px,5vw,38px);line-height:.95}
+  .brand h1 .y{color:var(--gold)}
+  .brand .sub{font-family:'Barlow Condensed';letter-spacing:3px;text-transform:uppercase;color:var(--muted-2);font-size:12px;margin-top:6px}
+  .upd{font-family:'Barlow Condensed';letter-spacing:1px;text-transform:uppercase;color:var(--muted-2);font-size:12px}
+
+  .panel{background:var(--panel);border:1px solid var(--line-soft);border-radius:14px;overflow:hidden;margin-bottom:16px}
+  .p-head{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line-soft)}
+  .p-head .bar{width:4px;height:20px;background:var(--gold);border-radius:2px}
+  .p-head .ic{font-size:16px}
+  .p-head h2{font-family:'Oswald';font-weight:600;letter-spacing:1.5px;text-transform:uppercase;font-size:16px;flex:1}
+  .p-head .ct{font-family:'Barlow Condensed';letter-spacing:1px;color:var(--muted-2);font-size:12px;text-transform:uppercase}
+  .p-head .more{font-family:'Barlow Condensed';letter-spacing:.5px;color:var(--gold-dim);font-size:12px;text-transform:uppercase}
+  .p-head .more:hover{color:var(--gold)}
+  .p-body{padding:10px 16px 14px}
+
+  .agenda .item{display:flex;align-items:center;gap:13px;padding:11px 0;border-bottom:1px solid var(--line-soft)}
+  .agenda .item:last-child{border:none}
+  .agenda .cd{text-align:center;min-width:62px}
+  .agenda .cd .big{font-family:'Oswald';font-weight:700;font-size:22px;color:var(--gold);line-height:1;font-variant-numeric:tabular-nums}
+  .agenda .cd .sm{font-family:'Barlow Condensed';letter-spacing:1px;text-transform:uppercase;color:var(--muted-2);font-size:10px;margin-top:2px}
+  .agenda .cd.now .big{color:var(--green)}
+  .agenda .ai{flex:1;min-width:0}
+  .agenda .at{font-weight:600;font-size:15px;display:flex;align-items:center;gap:7px}
+  .agenda .at .m{font-size:14px}
+  .agenda .ad{font-family:'Barlow Condensed';letter-spacing:.5px;color:var(--muted-2);font-size:12px;text-transform:uppercase;margin-top:1px}
+  .agenda .ax{display:flex;gap:6px}
+  .agenda .ax button{background:none;border:1px solid var(--line-soft);color:var(--muted);border-radius:6px;padding:6px 10px;cursor:pointer;font-family:'Barlow Condensed';letter-spacing:.5px;text-transform:uppercase;font-size:11px}
+  .agenda .ax button:hover{color:var(--gold);border-color:var(--line)}
+  .agenda .empty{font-family:'Barlow Condensed';letter-spacing:.4px;color:var(--muted-2);font-size:13.5px;padding:4px 0}
+
+  .fields{display:grid;grid-template-columns:1fr 1fr auto;gap:10px}
+  @media(max-width:680px){.fields{grid-template-columns:1fr}}
+  .field{position:relative}
+  .field label{font-family:'Barlow Condensed';letter-spacing:1.5px;text-transform:uppercase;color:var(--muted-2);font-size:11px;display:block;margin-bottom:5px}
+  .field input{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:12px 13px;font-family:'Barlow';font-size:15px}
+  .field input:focus{outline:none;border-color:var(--primary-bright)}
+  .field .geo{position:absolute;right:8px;top:30px;background:none;border:none;color:var(--gold);cursor:pointer;font-size:15px;padding:4px}
+  .planbtn{align-self:flex-end;font-family:'Oswald';font-weight:700;letter-spacing:1.5px;text-transform:uppercase;font-size:14px;background:linear-gradient(160deg,var(--primary),var(--primary-deep));color:#fff;border:none;border-radius:9px;padding:13px 24px;cursor:pointer;transition:transform .15s;white-space:nowrap}
+  .planbtn:hover{transform:translateY(-1px)} .planbtn:disabled{opacity:.6;cursor:wait}
+  .modes{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+  .modes button{font-family:'Barlow Condensed';letter-spacing:1px;text-transform:uppercase;font-size:12.5px;color:var(--muted);background:var(--bg);border:1px solid var(--line-soft);border-radius:8px;padding:8px 13px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .15s}
+  .modes button.on{background:linear-gradient(160deg,var(--primary),var(--primary-deep));color:#fff;border-color:transparent}
+  .formnote{font-family:'Barlow Condensed';letter-spacing:.5px;color:var(--muted-2);font-size:12px;margin-top:11px}
+  .formnote.err{color:var(--red)}
+
+  .hero{background:linear-gradient(135deg,var(--primary),var(--primary-deep));border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:16px;display:none}
+  .hero.show{display:block}
+  .hero .route{font-family:'Oswald';font-weight:700;font-size:clamp(19px,3.6vw,26px);letter-spacing:.5px;line-height:1.1}
+  .hero .route .arr{color:var(--gold);margin:0 8px}
+  .hstats{display:flex;gap:22px;flex-wrap:wrap;margin:14px 0 4px}
+  .hstat .n{font-family:'Oswald';font-weight:700;font-size:24px;color:#fff;font-variant-numeric:tabular-nums}
+  .hstat .l{font-family:'Barlow Condensed';letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.72);font-size:11px}
+  .hactions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .hactions a{display:inline-flex;align-items:center;gap:7px;font-family:'Oswald';font-weight:600;letter-spacing:1px;text-transform:uppercase;font-size:12px;background:rgba(10,15,13,.45);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:8px;padding:9px 14px;transition:background .15s}
+  .hactions a:hover{background:rgba(10,15,13,.75)}
+  .wx{display:flex;align-items:center;gap:10px;margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.16);font-family:'Barlow Condensed';letter-spacing:.5px;font-size:14px;color:rgba(255,255,255,.9)}
+  .wx .t{font-family:'Oswald';font-weight:700;font-size:18px;color:var(--gold)}
+  .savebar{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.16)}
+  .savebar .sf{display:flex;flex-direction:column;gap:4px}
+  .savebar label{font-family:'Barlow Condensed';letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.72);font-size:10px}
+  .savebar input{background:rgba(10,15,13,.5);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:7px;padding:8px 10px;font-family:'Barlow';font-size:13px}
+  .savebar .lbl{min-width:150px}
+  .savebar button{font-family:'Oswald';font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:12px;background:var(--gold);color:var(--bg);border:none;border-radius:7px;padding:10px 18px;cursor:pointer}
+
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+  .gpanel{grid-column:span 12;background:var(--panel);border:1px solid var(--line-soft);border-radius:14px;overflow:hidden}
+  @media(min-width:780px){.col-6{grid-column:span 6}.col-12{grid-column:span 12}}
+  .p-body.scroll{max-height:330px;overflow-y:auto}
+  .p-body.scroll::-webkit-scrollbar{width:7px}.p-body.scroll::-webkit-scrollbar-thumb{background:var(--primary-bright);border-radius:6px}
+  .poi{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line-soft)}
+  .poi:last-child{border:none}
+  .poi .pn{flex:1;min-width:0}
+  .poi .pnm{font-weight:600;font-size:14.5px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .poi .pmeta{font-family:'Barlow Condensed';letter-spacing:.5px;color:var(--muted-2);font-size:12px;text-transform:uppercase}
+  .poi .pgo{color:var(--muted-2);font-size:14px;padding:4px} .poi .pgo:hover{color:var(--gold)}
+  .loading,.fallback{font-family:'Barlow Condensed';letter-spacing:.4px;color:var(--muted-2);font-size:13.5px;line-height:1.5;padding:10px 0}
+  .explore{display:flex;flex-wrap:wrap;gap:8px;padding:6px 0 2px}
+  .explore a{font-family:'Barlow Condensed';letter-spacing:.5px;text-transform:uppercase;font-size:12px;background:var(--panel-2);border:1px solid var(--line-soft);border-radius:7px;padding:8px 12px;color:var(--muted);transition:all .15s}
+  .explore a:hover{color:var(--gold);border-color:var(--line)}
+
+  .launch{position:fixed;right:20px;bottom:20px;z-index:40;display:flex;align-items:center;gap:9px;font-family:'Oswald';font-weight:700;letter-spacing:1.5px;text-transform:uppercase;font-size:13px;border-radius:50px;padding:13px 20px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.5);transition:transform .15s;background:linear-gradient(160deg,var(--gold),var(--gold-dim));color:var(--bg);border:none}
+  .launch:hover{transform:translateY(-2px)}
+  .scrim{position:fixed;inset:0;background:rgba(5,8,7,.66);backdrop-filter:blur(3px);z-index:50;opacity:0;pointer-events:none;transition:opacity .25s}
+  .scrim.open{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;right:0;height:100%;width:min(420px,92vw);z-index:60;transform:translateX(102%);
+    background:linear-gradient(180deg,var(--bg-2),var(--bg));border-left:1px solid var(--line);box-shadow:-20px 0 60px rgba(0,0,0,.6);
+    transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
+  .drawer.open{transform:translateX(0)}
+  .drawer-hd{display:flex;align-items:center;gap:12px;padding:18px 20px;background:linear-gradient(90deg,var(--primary),var(--primary-deep));border-bottom:1px solid var(--line)}
+  .drawer-hd .bar{width:4px;height:24px;background:var(--gold);border-radius:2px}
+  .drawer-hd h2{font-family:'Oswald';font-weight:700;letter-spacing:2px;font-size:19px;text-transform:uppercase;flex:1}
+  .drawer-hd button{background:none;border:1px solid var(--line);color:var(--gold);width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:18px}
+  .drawer-hd button:hover{background:var(--gold);color:var(--primary-deep)}
+  .drawer-body{padding:18px 20px;overflow-y:auto;flex:1}
+  .src{margin-bottom:22px} .src-hd{margin-bottom:10px}
+  .src-hd .nm{font-family:'Oswald';font-weight:600;letter-spacing:1.5px;text-transform:uppercase;font-size:15px;color:var(--gold)}
+  .src-hd .tag{font-family:'Barlow Condensed';letter-spacing:1px;text-transform:uppercase;font-size:11px;color:var(--muted-2);margin-left:8px}
+  .links{display:flex;flex-direction:column;gap:8px}
+  .links a{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--panel);border:1px solid var(--line-soft);border-radius:8px;font-weight:500;font-size:14.5px;transition:all .15s}
+  .links a:hover{border-color:var(--line);background:var(--panel-2);color:var(--gold);transform:translateX(3px)}
+  .links a.feat{border-color:var(--gold);color:var(--gold)}
+  .links a .ar{margin-left:auto;color:var(--muted-2)}
+
+  footer{margin-top:26px;padding-top:14px;border-top:1px solid var(--line-soft);text-align:center;
+    font-family:'Barlow Condensed';letter-spacing:1.5px;text-transform:uppercase;color:var(--muted-2);font-size:12px}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <h1>Road <span class="y">Watch</span></h1>
+      <div class="sub">Trip Planner · Route &amp; Destination Guide</div>
+    </div>
+    <div class="upd" id="updated"></div>
+  </header>
+
+  <section class="panel agenda">
+    <div class="p-head"><span class="bar"></span><span class="ic">🗓️</span><h2>Upcoming Travel</h2><span class="ct" id="agendaCt"></span></div>
+    <div class="p-body" id="agenda"><div class="empty">No trips saved yet — plan one below, set a date, and tap Save.</div></div>
+  </section>
+
+  <section class="panel" style="padding:16px">
+    <div class="fields">
+      <div class="field">
+        <label>Start</label>
+        <input id="start" placeholder="City, address, or place" autocomplete="off">
+        <button class="geo" id="geoBtn" title="Use my location">📍</button>
+      </div>
+      <div class="field">
+        <label>Destination</label>
+        <input id="dest" placeholder="Where are you headed?" autocomplete="off">
+      </div>
+      <button class="planbtn" id="planBtn">Plan Trip</button>
+    </div>
+    <div class="modes" id="modes"></div>
+    <div class="formnote" id="formnote">Pick a mode, enter start &amp; destination — route plus a full destination guide come back. Save it with a date to track upcoming trips.</div>
+  </section>
+
+  <section class="hero" id="hero">
+    <div class="route" id="heroRoute"></div>
+    <div class="hstats" id="heroStats"></div>
+    <div class="hactions" id="heroActions"></div>
+    <div class="wx" id="heroWx" style="display:none"></div>
+    <div class="savebar" id="savebar">
+      <div class="sf"><label>Label (optional)</label><input class="lbl" id="svLabel" placeholder="e.g. Owings visit"></div>
+      <div class="sf"><label>Depart</label><input type="date" id="svDepart"></div>
+      <div class="sf"><label>Return (optional)</label><input type="date" id="svReturn"></div>
+      <button id="svBtn">Save to Upcoming</button>
+    </div>
+  </section>
+
+  <div class="grid" id="results" style="display:none">
+    <section class="gpanel col-12">
+      <div class="p-head"><span class="ic">🧭</span><h2>Destination</h2></div>
+      <div class="p-body"><div class="explore" id="exploreLinks"></div></div>
+    </section>
+    <section class="gpanel col-6">
+      <div class="p-head"><span class="bar"></span><span class="ic">🏨</span><h2>Hotels</h2><a class="more" id="moreHotels" target="_blank" rel="noopener">Maps ↗</a></div>
+      <div class="p-body scroll" id="hotels"><div class="loading">—</div></div>
+    </section>
+    <section class="gpanel col-6">
+      <div class="p-head"><span class="bar"></span><span class="ic">🍽️</span><h2>Restaurants</h2><a class="more" id="moreFood" target="_blank" rel="noopener">Maps ↗</a></div>
+      <div class="p-body scroll" id="food"><div class="loading">—</div></div>
+    </section>
+    <section class="gpanel col-6">
+      <div class="p-head"><span class="bar"></span><span class="ic">🎭</span><h2>Entertainment</h2><a class="more" id="moreFun" target="_blank" rel="noopener">Maps ↗</a></div>
+      <div class="p-body scroll" id="fun"><div class="loading">—</div></div>
+    </section>
+    <section class="gpanel col-6">
+      <div class="p-head"><span class="bar"></span><span class="ic">🏟️</span><h2>Sports</h2><a class="more" id="moreSports" target="_blank" rel="noopener">Tickets ↗</a></div>
+      <div class="p-body scroll" id="sports"><div class="loading">—</div></div>
+    </section>
+  </div>
+
+  <footer>© 2026 R. Grimes · All rights reserved</footer>
+</div>
+
+<button class="launch" id="toolsOpen"><span>🧰</span> Road Tools</button>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="toolsDrawer" aria-hidden="true">
+  <div class="drawer-hd"><span class="bar"></span><h2>Road Tools</h2><button id="toolsClose" aria-label="Close">✕</button></div>
+  <div class="drawer-body">
+    <div class="src"><div class="src-hd"><span class="nm">Fuel &amp; Route</span><span class="tag">On the way</span></div>
+      <div class="links">
+        <a class="feat" href="https://rodmann4210-bot.github.io/detour/" target="_blank" rel="noopener">Detour — Fuel-Stop Calculator <span class="ar">↗</span></a>
+        <a href="https://www.gasbuddy.com/trip" target="_blank" rel="noopener">GasBuddy — Trip Cost <span class="ar">↗</span></a>
+      </div>
+    </div>
+    <div class="src"><div class="src-hd"><span class="nm">Air &amp; Rail</span><span class="tag">Other modes</span></div>
+      <div class="links">
+        <a href="https://www.google.com/travel/flights" target="_blank" rel="noopener">Google Flights <span class="ar">↗</span></a>
+        <a href="https://www.amtrak.com/home.html" target="_blank" rel="noopener">Amtrak <span class="ar">↗</span></a>
+      </div>
+    </div>
+    <div class="src"><div class="src-hd"><span class="nm">Traffic &amp; Conditions</span><span class="tag">Before you roll</span></div>
+      <div class="links">
+        <a href="https://www.fhwa.dot.gov/trafficinfo/index.htm" target="_blank" rel="noopener">National 511 / Traffic <span class="ar">↗</span></a>
+        <a href="https://traveler.modot.org/map/" target="_blank" rel="noopener">MoDOT Traveler Map <span class="ar">↗</span></a>
+        <a href="https://www.weather.gov/" target="_blank" rel="noopener">NWS Weather <span class="ar">↗</span></a>
+      </div>
+    </div>
+    <div class="src"><div class="src-hd"><span class="nm">Stay &amp; Explore</span><span class="tag">At the destination</span></div>
+      <div class="links">
+        <a href="https://www.booking.com/" target="_blank" rel="noopener">Booking.com <span class="ar">↗</span></a>
+        <a href="https://www.tripadvisor.com/" target="_blank" rel="noopener">Tripadvisor <span class="ar">↗</span></a>
+        <a href="https://www.ticketmaster.com/" target="_blank" rel="noopener">Ticketmaster <span class="ar">↗</span></a>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<script>
+const $=id=>document.getElementById(id);
+const enc=encodeURIComponent;
+let DEST=null, START=null, MODE="drive";
+const MODES=[["drive","🚗","Drive"],["walk","🚶","Walk"],["bike","🚲","Bike"],["transit","🚌","Transit"],["fly","✈️","Fly"]];
+const GMODE={drive:"driving",walk:"walking",bike:"bicycling",transit:"transit"};
+const modeIcon=m=>(MODES.find(x=>x[0]===m)||["","🚗"])[1];
+
+async function getJSON(u,opt){const r=await fetch(u,opt||{});if(!r.ok)throw new Error(r.status);return r.json();}
+function miles(m){return Math.round(m/1609.34);}
+function hrs(s){const h=Math.floor(s/3600),m=Math.round((s%3600)/60);return h>0?`${h}h ${m}m`:`${m}m`;}
+function hav(a,b){const R=3958.8,dl=(b.lat-a.lat)*Math.PI/180,dn=(b.lon-a.lon)*Math.PI/180;
+  const x=Math.sin(dl/2)**2+Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dn/2)**2;
+  return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
+function shortName(dn){return (dn||"").split(",").slice(0,2).join(",");}
+
+function renderModes(){
+  $("modes").innerHTML=MODES.map(([k,i,l])=>`<button data-m="${k}" class="${k===MODE?'on':''}">${i} ${l}</button>`).join("");
+  $("modes").querySelectorAll("button").forEach(b=>b.onclick=()=>{MODE=b.dataset.m;renderModes();if(START&&DEST)plan();});
+}
+
+async function geocode(q){
+  const d=await getJSON(`https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${enc(q)}`,{headers:{"Accept":"application/json"}});
+  if(!d.length)throw new Error("not found: "+q);
+  return {lat:+d[0].lat,lon:+d[0].lon,name:d[0].display_name};
+}
+async function reverse(lat,lon){
+  try{const d=await getJSON(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
+    const a=d.address||{};return a.city||a.town||a.village||a.county||d.display_name||`${lat.toFixed(3)},${lon.toFixed(3)}`;}
+  catch(e){return `${lat.toFixed(3)},${lon.toFixed(3)}`;}
+}
+async function driveRoute(a,b){
+  try{const d=await getJSON(`https://router.project-osrm.org/route/v1/driving/${a.lon},${a.lat};${b.lon},${b.lat}?overview=false`);
+    if(d.routes&&d.routes[0])return {dist:d.routes[0].distance,dur:d.routes[0].duration};}catch(e){}
+  return null;
+}
+const WMO={0:"Clear",1:"Mainly clear",2:"Partly cloudy",3:"Overcast",45:"Fog",48:"Fog",51:"Drizzle",53:"Drizzle",55:"Drizzle",
+  61:"Rain",63:"Rain",65:"Heavy rain",71:"Snow",73:"Snow",75:"Heavy snow",80:"Showers",81:"Showers",82:"Showers",95:"Storms",96:"Storms",99:"Storms"};
+async function weather(lat,lon){
+  try{const d=await getJSON(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&temperature_unit=fahrenheit&timezone=auto&forecast_days=1`);
+    const c=d.current||{};return {t:Math.round(c.temperature_2m),code:c.weather_code,
+      hi:Math.round(d.daily.temperature_2m_max[0]),lo:Math.round(d.daily.temperature_2m_min[0])};}catch(e){return null;}
+}
+async function overpass(lat,lon){
+  const q=`[out:json][timeout:25];(`
+    +`nwr["tourism"~"^(hotel|motel|guest_house)$"](around:6000,${lat},${lon});`
+    +`nwr["amenity"="restaurant"](around:6000,${lat},${lon});`
+    +`nwr["amenity"~"^(cinema|theatre|nightclub)$"](around:6000,${lat},${lon});`
+    +`nwr["tourism"="attraction"](around:6000,${lat},${lon});`
+    +`nwr["leisure"~"^(stadium|sports_centre)$"](around:6000,${lat},${lon});`
+    +`);out center tags 160;`;
+  const d=await getJSON(`https://overpass-api.de/api/interpreter?data=${enc(q)}`);
+  return (d.elements||[]).map(e=>{
+    const t=e.tags||{};const la=e.lat||(e.center&&e.center.lat),lo=e.lon||(e.center&&e.center.lon);
+    if(!la||!lo||!t.name)return null;
+    let cat="";
+    if(/^(hotel|motel|guest_house)$/.test(t.tourism||""))cat="hotel";
+    else if(t.amenity==="restaurant")cat="food";
+    else if(/^(cinema|theatre|nightclub)$/.test(t.amenity||""))cat="fun";
+    else if(t.tourism==="attraction")cat="fun";
+    else if(/^(stadium|sports_centre)$/.test(t.leisure||""))cat="sports";
+    if(!cat)return null;
+    const meta=t.cuisine||t.amenity||t.tourism||t.leisure||"";
+    return {name:t.name,cat,meta:meta.replace(/_/g," "),lat:la,lon:lo};
+  }).filter(Boolean);
+}
+function mapsSearch(term,name){return `https://www.google.com/maps/search/?api=1&query=${enc(term)}+near+${enc(name)}`;}
+function mapsPoint(n,la,lo){return `https://www.google.com/maps/search/?api=1&query=${enc(n)}%20${la},${lo}`;}
+function routeLink(s,d,mode){
+  if(mode==="fly")return `https://www.google.com/travel/flights?q=${enc("Flights from "+s+" to "+d)}`;
+  return `https://www.google.com/maps/dir/?api=1&origin=${enc(s)}&destination=${enc(d)}&travelmode=${GMODE[mode]||"driving"}`;
+}
+function renderPOIs(elId,list,emptyTerm){
+  const el=$(elId);
+  if(!list.length){el.innerHTML=`<div class="fallback">No tagged spots came back here — use the link above to browse ${emptyTerm} at the destination.</div>`;return;}
+  el.innerHTML=list.slice(0,9).map(p=>`<div class="poi"><div class="pn"><div class="pnm">${p.name}</div>`
+    +`<div class="pmeta">${p.meta||""}${p.miAway!=null?` · ${p.miAway} mi`:""}</div></div>`
+    +`<a class="pgo" href="${mapsPoint(p.name,p.lat,p.lon)}" target="_blank" rel="noopener" title="Open in Maps">↗</a></div>`).join("");
+}
+
+async function plan(){
+  const s=$("start").value.trim(), dq=$("dest").value.trim();
+  if(!s||!dq){$("formnote").textContent="Enter both a start and a destination.";$("formnote").classList.add("err");return;}
+  const btn=$("planBtn");btn.disabled=true;btn.textContent="Planning…";
+  $("formnote").classList.remove("err");$("formnote").textContent="Geocoding & routing…";
+  try{localStorage.setItem("rw_trip",JSON.stringify({s,d:dq,mode:MODE}));}catch(e){}
+  try{
+    const [A,B]=await Promise.all([geocode(s),geocode(dq)]);
+    START=A;DEST=B;
+    const destShort=shortName(B.name);
+    $("heroRoute").innerHTML=`${modeIcon(MODE)} ${shortName(A.name)}<span class="arr">→</span>${destShort}`;
+    const crow=Math.round(hav(A,B));
+    if(MODE==="drive"){
+      const rt=await driveRoute(A,B);
+      $("heroStats").innerHTML=rt
+        ? `<div class="hstat"><div class="n">${miles(rt.dist)}</div><div class="l">Miles</div></div><div class="hstat"><div class="n">${hrs(rt.dur)}</div><div class="l">Drive Time</div></div>`
+        : `<div class="hstat"><div class="n">${crow}</div><div class="l">Miles (direct)</div></div>`;
+    }else if(MODE==="fly"){
+      $("heroStats").innerHTML=`<div class="hstat"><div class="n">${crow}</div><div class="l">Air Miles</div></div>`;
+    }else{
+      $("heroStats").innerHTML=`<div class="hstat"><div class="n">${crow}</div><div class="l">Miles (direct)</div></div><div class="hstat"><div class="n">↗</div><div class="l">Time in Maps</div></div>`;
+    }
+    let acts=`<a href="${routeLink(s,dq,MODE)}" target="_blank" rel="noopener">${MODE==="fly"?"✈️ Search Flights":"🧭 Open Route in Maps"}</a>`;
+    if(MODE==="drive")acts+=`<a href="https://rodmann4210-bot.github.io/detour/" target="_blank" rel="noopener">⛽ Fuel Stops (Detour)</a>`;
+    $("heroActions").innerHTML=acts;
+    $("hero").classList.add("show");
+    $("results").style.display="grid";
+    if(!$("svDepart").value)$("svDepart").value=new Date().toISOString().slice(0,10);
+    $("formnote").textContent=`Trip to ${destShort} — building destination guide…`;
+    weather(B.lat,B.lon).then(w=>{if(w){$("heroWx").style.display="flex";
+      $("heroWx").innerHTML=`<span>Destination weather:</span> <span class="t">${w.t}°</span> <span>${WMO[w.code]||""} · H ${w.hi}° / L ${w.lo}°</span>`;}});
+    $("exploreLinks").innerHTML=[
+      ["Things to do",`https://www.google.com/search?q=${enc("things to do in "+destShort)}`],
+      ["Wikipedia",`https://en.wikipedia.org/wiki/Special:Search?search=${enc(destShort)}`],
+      ["Tripadvisor",`https://www.tripadvisor.com/Search?q=${enc(destShort)}`],
+      ["Events",`https://www.google.com/search?q=${enc("events in "+destShort+" this weekend")}`],
+      ["Open in Maps",`https://www.google.com/maps/search/?api=1&query=${enc(destShort)}`]
+    ].map(([t,u])=>`<a href="${u}" target="_blank" rel="noopener">${t}</a>`).join("");
+    $("moreHotels").href=mapsSearch("hotels",destShort);
+    $("moreFood").href=mapsSearch("restaurants",destShort);
+    $("moreFun").href=mapsSearch("entertainment",destShort);
+    $("moreSports").href=`https://www.ticketmaster.com/search?q=${enc(destShort)}`;
+    ["hotels","food","fun","sports"].forEach(id=>$(id).innerHTML='<div class="loading">Scanning the area…</div>');
+    try{
+      const pois=await overpass(B.lat,B.lon);
+      pois.forEach(p=>p.miAway=+hav(B,p).toFixed(1));
+      const by=c=>pois.filter(p=>p.cat===c).sort((a,b)=>a.miAway-b.miAway);
+      renderPOIs("hotels",by("hotel"),"hotels");renderPOIs("food",by("food"),"restaurants");
+      renderPOIs("fun",by("fun"),"entertainment");renderPOIs("sports",by("sports"),"stadiums & venues");
+    }catch(e){["hotels","food","fun","sports"].forEach(id=>renderPOIs(id,[],"options"));}
+    $("formnote").textContent=`Planned: ${shortName(A.name)} → ${destShort}. Set a date below and Save to track it.`;
+    $("updated").textContent="Planned "+new Date().toLocaleTimeString(undefined,{hour:"numeric",minute:"2-digit"});
+  }catch(e){
+    $("formnote").classList.add("err");
+    $("formnote").textContent="Couldn't find one of those places — try adding a state (e.g. \"Branson, MO\").";
+  }finally{btn.disabled=false;btn.textContent="Plan Trip";}
+}
+
+/* upcoming travel */
+function loadTrips(){try{return JSON.parse(localStorage.getItem("rw_trips")||"[]");}catch(e){return [];}}
+function saveTrips(a){try{localStorage.setItem("rw_trips",JSON.stringify(a));}catch(e){}}
+function dayDiff(d){const t=new Date();t.setHours(0,0,0,0);const x=new Date(d+"T00:00:00");return Math.round((x-t)/86400000);}
+function renderAgenda(){
+  let trips=loadTrips();const today=new Date();today.setHours(0,0,0,0);
+  trips=trips.filter(t=>{const end=t.ret||t.depart;return new Date(end+"T00:00:00")>=today;});
+  saveTrips(trips);
+  trips.sort((a,b)=>new Date(a.depart)-new Date(b.depart));
+  $("agendaCt").textContent=trips.length?`${trips.length} trip${trips.length>1?"s":""}`:"";
+  if(!trips.length){$("agenda").innerHTML='<div class="empty">No trips saved yet — plan one below, set a date, and tap Save.</div>';return;}
+  $("agenda").innerHTML=trips.map(t=>{
+    const dd=dayDiff(t.depart);const inProg=t.ret&&dayDiff(t.ret)>=0&&dd<=0;
+    let cd,now="";
+    if(inProg){cd=`<div class="big">●</div><div class="sm">In Trip</div>`;now="now";}
+    else if(dd===0){cd=`<div class="big">●</div><div class="sm">Today</div>`;now="now";}
+    else if(dd===1){cd=`<div class="big">1</div><div class="sm">Day</div>`;}
+    else {cd=`<div class="big">${dd}</div><div class="sm">Days</div>`;}
+    const dates=new Date(t.depart+"T00:00:00").toLocaleDateString(undefined,{month:"short",day:"numeric"})
+      +(t.ret?` – ${new Date(t.ret+"T00:00:00").toLocaleDateString(undefined,{month:"short",day:"numeric"})}`:"");
+    const title=t.label||shortName(t.destName||t.dest);
+    return `<div class="item"><div class="cd ${now}">${cd}</div>`
+      +`<div class="ai"><div class="at"><span class="m">${modeIcon(t.mode)}</span>${title}</div>`
+      +`<div class="ad">${shortName(t.startName||t.start)} → ${shortName(t.destName||t.dest)} · ${dates}</div></div>`
+      +`<div class="ax"><button data-act="open" data-id="${t.id}">Open</button><button data-act="del" data-id="${t.id}">✕</button></div></div>`;
+  }).join("");
+  $("agenda").querySelectorAll("button").forEach(b=>b.onclick=()=>{
+    const id=b.dataset.id, trips=loadTrips();
+    if(b.dataset.act==="del"){saveTrips(trips.filter(t=>t.id!==id));renderAgenda();}
+    else{const t=trips.find(x=>x.id===id);if(t){$("start").value=t.start;$("dest").value=t.dest;MODE=t.mode||"drive";renderModes();
+      $("svLabel").value=t.label||"";$("svDepart").value=t.depart||"";$("svReturn").value=t.ret||"";
+      window.scrollTo({top:0,behavior:"smooth"});plan();}}
+  });
+}
+$("svBtn").onclick=()=>{
+  const depart=$("svDepart").value;
+  if(!depart){$("formnote").classList.add("err");$("formnote").textContent="Pick a depart date to save the trip.";return;}
+  const trips=loadTrips();
+  trips.push({id:"t"+Date.now(),label:$("svLabel").value.trim(),
+    start:$("start").value.trim(),dest:$("dest").value.trim(),
+    startName:START?shortName(START.name):$("start").value.trim(),destName:DEST?shortName(DEST.name):$("dest").value.trim(),
+    mode:MODE,depart,ret:$("svReturn").value||""});
+  saveTrips(trips);renderAgenda();
+  $("formnote").classList.remove("err");$("formnote").textContent="Saved to Upcoming Travel ✓";
+};
+
+$("planBtn").onclick=plan;
+["start","dest"].forEach(id=>$(id).addEventListener("keydown",e=>{if(e.key==="Enter")plan();}));
+$("geoBtn").onclick=()=>{
+  if(!navigator.geolocation){$("formnote").textContent="Geolocation isn't available in this browser.";return;}
+  $("formnote").textContent="Getting your location…";
+  navigator.geolocation.getCurrentPosition(async pos=>{
+    const nm=await reverse(pos.coords.latitude,pos.coords.longitude);
+    $("start").value=nm;$("formnote").textContent="Start set to your location.";
+  },()=>{$("formnote").textContent="Couldn't get your location — type a start instead.";});
+};
+(function(){const scrim=$("scrim"),d=$("toolsDrawer");
+  function close(){d.classList.remove("open");d.setAttribute("aria-hidden","true");scrim.classList.remove("open");}
+  function open(){d.classList.add("open");d.setAttribute("aria-hidden","false");scrim.classList.add("open");}
+  $("toolsOpen").onclick=open;$("toolsClose").onclick=close;scrim.onclick=close;
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")close();});
+})();
+
+renderModes();renderAgenda();
+(function(){try{const t=JSON.parse(localStorage.getItem("rw_trip")||"null");
+  if(t){$("start").value=t.s||"";$("dest").value=t.d||"";if(t.mode){MODE=t.mode;renderModes();}}}catch(e){}})();
+</script>
+</body>
+</html>
