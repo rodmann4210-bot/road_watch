@@ -225,7 +225,7 @@
   <div class="drawer-body">
     <div class="src"><div class="src-hd"><span class="nm">Fuel &amp; Route</span><span class="tag">On the way</span></div>
       <div class="links">
-        <a class="feat" href="https://rodmann4210-bot.github.io/detour/" target="_blank" rel="noopener">Detour — Fuel-Stop Calculator <span class="ar">↗</span></a>
+        <a class="feat" href="https://rodmann4210-bot.github.io/Detour/" target="_blank" rel="noopener">Detour — Fuel-Stop Calculator <span class="ar">↗</span></a>
         <a href="https://www.gasbuddy.com/trip" target="_blank" rel="noopener">GasBuddy — Trip Cost <span class="ar">↗</span></a>
       </div>
     </div>
@@ -461,7 +461,7 @@ async function plan(){
         +`<div class="hstat"><div class="n">${stops.length}</div><div class="l">Stops</div></div>`;
     }
     let acts=`<a href="${fullRouteLink(pts)}" target="_blank" rel="noopener">${MODE==="fly"?"✈️ Search Flights":"🧭 Open Full Route in Maps"}</a>`;
-    if(MODE==="drive")acts+=`<a href="https://rodmann4210-bot.github.io/detour/" target="_blank" rel="noopener">⛽ Fuel Stops (Detour)</a>`;
+    if(MODE==="drive")acts+=`<a href="https://rodmann4210-bot.github.io/Detour/" target="_blank" rel="noopener">⛽ Fuel Stops (Detour)</a>`;
     $("heroActions").innerHTML=acts;
     $("hero").classList.add("show");
     if(!$("svDepart").value)$("svDepart").value=new Date().toISOString().slice(0,10);
